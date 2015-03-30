@@ -39,10 +39,16 @@
     <object-name>piedG</object-name>
     <object-name>piedD</object-name>
     <condition>
-      <equals>
-        <property>sim/model/livery/file</property>
-        <value>yellow</value>
-      </equals>
+		<or>
+	      <equals>
+	        <property>sim/model/livery/file</property>
+	        <value>yellow</value>
+	      </equals>
+	      <equals>
+	        <property>sim/model/livery/file</property>
+	        <value>hp</value>
+	      </equals>
+	  	</or>
     </condition>
     <texture>driver.png</texture>
   </animation>
@@ -67,7 +73,7 @@
     <condition>
       <equals>
         <property>sim/model/livery/file</property>
-        <value>hp</value>
+        <value>martin</value>
       </equals>
     </condition>
     <texture>GuyMartin_driver.png</texture>

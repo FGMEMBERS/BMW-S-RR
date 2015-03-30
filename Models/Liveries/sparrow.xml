@@ -10,7 +10,7 @@
 <sim>
     <model>
         <livery>
-            <name type="string">No.8 Jack Sparrow</name>
+            <name type="string">Jack Sparrow</name>
             <texture>Liveries/BMW_S_1000_RR_Joey.png</texture>
         </livery>
     </model>
