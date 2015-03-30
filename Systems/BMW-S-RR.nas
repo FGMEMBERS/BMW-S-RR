@@ -269,11 +269,9 @@ setlistener("sim/model/start-idling", func()
 	var p = getprop("/devices/status/keyboard/event/key/pressed") or 0;
 	var k = getprop("/devices/status/keyboard/event/key") or 0;
  
-  if (b.getBoolValue() and k == 109)
+  if (!b.getBoolValue() and k == 109)
    {
-   		var la = getprop("/sim/input/click/latitude-deg") or 0;
-   		var lo = getprop("/sim/input/click/longitude-deg") or 0;
-   		var al = getprop("/sim/input/click/elevation-ft") or 0;
+   		setprop("/devices/status/keyboard/event/key",60); # overwrite the key event
 		var retrl = getprop("/BMW-S-RR/race-lap") or 0;
 		var rets = getprop("/BMW-S-RR/this-sector") or 0;
 		if(pa){
@@ -291,11 +289,12 @@ setlistener("sim/model/start-idling", func()
 				}
 			}
 		} 
+		 
 		setprop("sim/current-view/view-number", 1);
    		shutdown();
-		setprop("/sim/presets/latitude-deg",la);
-		setprop("/sim/presets/longitude-deg", lo);
-		setprop("/sim/presets/altitude-ft", al);
+		setprop("/sim/presets/latitude-deg",getprop("/sim/input/click/latitude-deg"));
+		setprop("/sim/presets/longitude-deg", getprop("/sim/input/click/longitude-deg"));
+		setprop("/sim/presets/altitude-ft", getprop("/sim/input/click/elevation-ft"));
 		setprop("/controls/gear/gear-down", 1);
 		setprop("/surface-positions/left-aileron-pos-norm", 0);
 		setprop("/surface-positions/right-aileron-pos-norm", 0);
