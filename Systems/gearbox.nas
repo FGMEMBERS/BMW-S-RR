@@ -204,6 +204,9 @@ var loop = func {
 			propulsion.setValue(0);
 			if (speed > 20) engine_brake.setValue(0.8);
 			rpm.setValue(maxrpm-1000);
+			setprop("/controls/BMW-S-RR/ctrl-light-overspeed", 1);
+		}else{
+			setprop("/controls/BMW-S-RR/ctrl-light-overspeed", 0);
 		}
 
 		# Anti - slip regulation BMW called ASC
@@ -239,6 +242,7 @@ var loop = func {
 	# Anti - blog brake regulation
 	if(comp_m < 0.05 and brake_ctrl_right > 0.5 and brake_ctrl_left > 0.5 and gspeed > 70){
 		setprop("/controls/BMW-S-RR/ABS/ctrl-light", 1);
+		setprop("/controls/BMW-S-RR/ctrl-light-overspeed", 1);
 		setprop("/controls/BMW-S-RR/ABS/brake-right", brake_ctrl_right*0.34);
 		setprop("/controls/BMW-S-RR/ABS/brake-left", brake_ctrl_left*0.34);		
 	}else{

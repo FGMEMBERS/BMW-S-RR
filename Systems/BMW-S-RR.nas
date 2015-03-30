@@ -65,7 +65,9 @@ setlistener("/controls/flight/aileron", func (position){
 		}
 		
 	}else{
-		interpolate("/controls/flight/aileron-manual", position,0.1);
+		var np = math.round(position*position*position*100);
+		np = np/100;
+		interpolate("/controls/flight/aileron-manual", np,0.1);
 	}
 });
 
@@ -238,11 +240,11 @@ setlistener("sim/model/start-idling", func()
  
  if (run1 == 0)
   {
-  startup();
+  	startup();
   }
  else
   {
-  shutdown();
+  	shutdown();
   }
  }, 0, 0);
  
@@ -259,6 +261,65 @@ setlistener("sim/model/start-idling", func()
    		interpolate("/controls/BMW-S-RR/driver-up", 0, 0.8);
    }
   }, 1, 0);
+  
+ #--------------------- Replace bike after crash ----------------
+ setlistener("/devices/status/mice/mouse/button", func(b)
+  {
+  	var c = getprop("/sim/crashed") or 0;
+	var p = getprop("/devices/status/keyboard/event/key/pressed") or 0;
+	var k = getprop("/devices/status/keyboard/event/key") or 0;
+ 
+  if (b.getBoolValue() and k == 109)
+   {
+   		var la = getprop("/sim/input/click/latitude-deg") or 0;
+   		var lo = getprop("/sim/input/click/longitude-deg") or 0;
+   		var al = getprop("/sim/input/click/elevation-ft") or 0;
+		var retrl = getprop("/BMW-S-RR/race-lap") or 0;
+		var rets = getprop("/BMW-S-RR/this-sector") or 0;
+		if(pa){
+			var ra = {};
+			var rn = 0;
+			if(size(sectors) > 0){
+				foreach(var s; sectors) {
+					var as = getprop("/BMW-S-RR/reset-store/"~pa~"/sector["~rn~"]/start-time") or 0;	
+					ra[rn] = as;
+					if(rn > (size(sectors)-1)) { 
+						rn = 0;
+					}else{
+						rn += 1;
+					}			
+				}
+			}
+		} 
+		setprop("sim/current-view/view-number", 1);
+   		shutdown();
+		setprop("/sim/presets/latitude-deg",la);
+		setprop("/sim/presets/longitude-deg", lo);
+		setprop("/sim/presets/altitude-ft", al);
+		setprop("/controls/gear/gear-down", 1);
+		setprop("/surface-positions/left-aileron-pos-norm", 0);
+		setprop("/surface-positions/right-aileron-pos-norm", 0);
+		setprop("sim/current-view/view-number", 0);
+		
+		fgcommand("reset");
+		
+		if(pa){
+			var rn = 0;
+			if(size(sectors) > 0){
+				settimer(func{
+					foreach(var s; keys (ra)) {
+						setprop("/BMW-S-RR/"~pa~"/sector["~s~"]/start-time", ra[s]);		
+					}
+					find_marker();
+				}, 10.0);
+			}
+		}
+		setprop("/BMW-S-RR/race-lap",retrl);
+		setprop("/BMW-S-RR/this-sector",rets);
+		
+		help_win.write("Is everything ok with you?");
+   }
+  }, 1, 1);
 
  
 
