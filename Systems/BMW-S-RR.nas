@@ -272,24 +272,6 @@ setlistener("sim/model/start-idling", func()
   if (!b.getBoolValue() and k == 109)
    {
    		setprop("/devices/status/keyboard/event/key",60); # overwrite the key event
-		var retrl = getprop("/BMW-S-RR/race-lap") or 0;
-		var rets = getprop("/BMW-S-RR/this-sector") or 0;
-		if(pa){
-			var ra = {};
-			var rn = 0;
-			if(size(sectors) > 0){
-				foreach(var s; sectors) {
-					var as = getprop("/BMW-S-RR/reset-store/"~pa~"/sector["~rn~"]/start-time") or 0;	
-					ra[rn] = as;
-					if(rn > (size(sectors)-1)) { 
-						rn = 0;
-					}else{
-						rn += 1;
-					}			
-				}
-			}
-		} 
-		 
 		setprop("sim/current-view/view-number", 1);
    		shutdown();
 		setprop("/sim/presets/latitude-deg",getprop("/sim/input/click/latitude-deg"));
@@ -300,22 +282,8 @@ setlistener("sim/model/start-idling", func()
 		setprop("/surface-positions/right-aileron-pos-norm", 0);
 		setprop("sim/current-view/view-number", 0);
 		
-		fgcommand("reset");
-		
-		if(pa){
-			var rn = 0;
-			if(size(sectors) > 0){
-				settimer(func{
-					foreach(var s; keys (ra)) {
-						setprop("/BMW-S-RR/"~pa~"/sector["~s~"]/start-time", ra[s]);		
-					}
-					find_marker();
-				}, 10.0);
-			}
-		}
-		setprop("/BMW-S-RR/race-lap",retrl);
-		setprop("/BMW-S-RR/this-sector",rets);
-		
+		fgcommand("reposition");
+
 		help_win.write("Is everything ok with you?");
    }
   }, 1, 1);

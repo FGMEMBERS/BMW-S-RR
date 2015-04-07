@@ -114,9 +114,11 @@ var wp2cc = [-39.93978927,175.04952614,7.0,"Heads Road"];
 var wp1ct = [49.75945182,18.48839585,283.0,"Start/Cil"];
 
 # Ground Marker Position Rondel - lat,lon,alt in meter
+#var wp2ct = [49.75801039,18.48862383,283.0,"Rondel"];
 var wp2ct = [49.76191355,18.46498641,337.0,"Rondel"];
 
 # Ground Marker Position Rondel - lat,lon,alt in meter
+#var wp3ct = [49.75406068,18.48919601,283.0,"Sady"];
 var wp3ct = [49.77349913,18.48491256,314.0,"Sady"];
 
 var pa = "TT";
@@ -232,15 +234,7 @@ var show_lap_and_sector_time = func{
 		var ft  = getprop("/BMW-S-RR/"~pa~"/sector["~n~"]/fastest-time") or 0;
 		var at = getprop("/sim/time/elapsed-sec") or 0;
 		var ct = 0;
-		
-		#################  write the data in the reset store ############################
-		var rtrl = getprop("/BMW-S-RR/this-race-lap") or 0;
-		var rts = getprop("/BMW-S-RR/this-sector") or 0;
-		setprop("/BMW-S-RR/reset-store/"~pa~"/sector["~n~"]/start-time",sts);
-		setprop("/BMW-S-RR/reset-store/this-race-lap",rtrl);
-		setprop("/BMW-S-RR/reset-store/this-sector",rts);
-		#################################################################################
-		
+
 		var thsec = thissector.getValue();
 		thsec -= 1;
 		if (thsec > size(sectors)-1) thsec = 0;
