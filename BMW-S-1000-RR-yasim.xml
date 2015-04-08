@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--###################################################################################
 		Lake of Constance Hangar :: M.Kraus
-		BMW-S-1000-RR for Flightgear September 2014
+		Yamaha-YZF for Flightgear April 2015
 		This file is licenced under the terms of the GNU General Public Licence V2 or later
 		###################################################################################
 -->
@@ -69,13 +69,13 @@
 
     <gear x="0.856" y="0.0" z="-0.21"
 			compression="0.2"
-			sfric="1.1"
-			dfric="1.2"
+			sfric="0.7"
+			dfric="0.8"
 			spring="4.0"
 			damp="6.2">
           <control-input axis="/controls/gear/brake-parking" control="BRAKE"/> 
           <control-input axis="/controls/gear/brake-left" control="BRAKE"/>
-          <control-input axis="/surface-positions/left-aileron-pos-norm" control="STEER" square="true" src0="-1.0" src1="1.0" dst0="-0.6" dst1="0.6"/>
+          <control-input axis="/surface-positions/left-aileron-pos-norm" control="STEER" square="true" src0="-1.0" src1="1.0" dst0="-0.8" dst1="0.8"/>
       	  <control-input axis="/surface-positions/rudder-pos-norm" control="STEER" square="true" src0="-1.0" src1="1.0" dst0="-0.8" dst1="0.8"/>
     </gear>
 
@@ -90,34 +90,34 @@
           <control-input axis="/engines/engine[0]/brake-engine" control="BRAKE"/> 
           <control-input axis="/controls/gear/brake-parking" control="BRAKE"/>
           <control-input axis="/controls/gear/brake-right" control="BRAKE"/>
-          <control-input axis="/surface-positions/left-aileron-pos-norm" control="STEER" square="true" src0="-1.0" src1="1.0" dst0="0.6" dst1="-0.6"/>
+          <control-input axis="/surface-positions/left-aileron-pos-norm" control="STEER" square="true" src0="-1.0" src1="1.0" dst0="0.8" dst1="-0.8"/>
     </gear>
 
     <!-- support wheel left -->
 
      <gear x="0.04" y="0.3" z="-0.21"
-			compression="0.25"
+			compression="0.24"
 			sfric="0.8"
 			dfric="3.0"
 			spring="4.0"
 			damp="6.2">
           <control-input axis="/engines/engine[0]/brake-engine" control="BRAKE"/> 
           <control-input axis="/controls/gear/brake-right" control="BRAKE"/> 
-          <control-input axis="/surface-positions/left-aileron-pos-norm" control="STEER" square="true" src0="-1.0" src1="1.0" dst0="-0.6" dst1="0.6"/>
+          <control-input axis="/surface-positions/left-aileron-pos-norm" control="STEER" square="true" src0="-1.0" src1="1.0" dst0="-0.8" dst1="0.8"/>
        	<control-input axis="/surface-positions/rudder-pos-norm" control="STEER" square="true" src0="-1.0" src1="1.0" dst0="-0.8" dst1="0.8"/> 
      </gear>
 
     <!-- support wheel right -->
 
      <gear x="0.04" y="-0.3" z="-0.21"
-			compression="0.25"
+			compression="0.24"
 			sfric="0.8"
 			dfric="3.0"
 			spring="4.0"
 			damp="6.2">
           <control-input axis="/engines/engine[0]/brake-engine" control="BRAKE"/> 
           <control-input axis="/controls/gear/brake-right" control="BRAKE"/> 
-          <control-input axis="/surface-positions/left-aileron-pos-norm" control="STEER" square="true" src0="-1.0" src1="1.0" dst0="-0.6" dst1="0.6"/>
+          <control-input axis="/surface-positions/left-aileron-pos-norm" control="STEER" square="true" src0="-1.0" src1="1.0" dst0="-0.8" dst1="0.8"/>
        	<control-input axis="/surface-positions/rudder-pos-norm" control="STEER" square="true" src0="-1.0" src1="1.0" dst0="-0.8" dst1="0.8"/>
      </gear>
 
