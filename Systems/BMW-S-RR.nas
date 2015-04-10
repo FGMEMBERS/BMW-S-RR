@@ -21,12 +21,19 @@ var f = props.globals.getNode("/controls/flight/fork");
 var forkcontrol = func{
     var r = getprop("/controls/flight/rudder") or 0;
 	var ms = getprop("/devices/status/mice/mouse/mode") or 0;
+	var bl = getprop("/controls/gear/brake-left") or 0;
+	var bs = getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") or 0;
 	if (ms == 1) {
 		if(getprop("/devices/status/mice/mouse/button")==1){
 			f.setValue(r);
 		}
 	}else{
 		f.setValue(r);
+	}
+	if(bs > 40){
+		setprop("/controls/gear/brake-front", bl);
+	}else{
+		setprop("/controls/gear/brake-front", 0);
 	}
 	settimer(forkcontrol, 0.05);
 };
