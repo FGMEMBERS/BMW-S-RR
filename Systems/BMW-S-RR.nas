@@ -30,7 +30,7 @@ var forkcontrol = func{
 	}else{
 		f.setValue(r);
 	}
-	if(bs > 40){
+	if(bs > 38){
 		setprop("/controls/gear/brake-front", bl);
 	}else{
 		setprop("/controls/gear/brake-front", 0);
