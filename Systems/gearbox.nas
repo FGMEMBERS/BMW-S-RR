@@ -166,6 +166,7 @@ var loop = func {
 			  transmissionpower = 0.65*throttle.getValue()-propulsion.getValue()/maxrpm;
 			  setprop("/sim/weight[1]/weight-lb", 0);
 			}
+			transmissionpower = transmissionpower * (1- killed.getValue());
 			propulsion.setValue(transmissionpower);
 			
 			newrpm = (gspeed < 20 and throttle.getValue() > 0.1) ? throttle.getValue()*(maxrpm+3500) : (maxrpm+1500)/vmax*gspeed;

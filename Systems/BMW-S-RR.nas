@@ -104,16 +104,16 @@ setlistener("/surface-positions/left-aileron-pos-norm", func{
 			var godown = getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") or 0;
 			var lookup = getprop("/controls/gear/brake-right") or 0;
 			var onwork = getprop("/controls/hangoff") or 0;
-			if(godown > 10 and godown < hangoffspeed.getValue()){
-				var factor = (position <= 0)? -0.38 : 0.38;
+			if(godown > 10 and godown < hangoffspeed.getValue() and (abs(position) > 0.1 and godown < 70)){
+				var factor = (position <= 0)? -2.0 : 2.0;
 				factor = (abs(factor) > abs(position)) ? position : factor;
 				if(onwork == 0){
 					settimer(func{setprop("/controls/hangoff",1)},0.1);
-					interpolate("/sim/current-view/x-offset-m", math.sin(factor*2.0)*(1.34+driverpos/5),0.1);
-					interpolate("/sim/current-view/y-offset-m", math.cos(factor*2.4)*(1.36 - godown/1300 + lookup/12 + driverpos/4),0.1);
+					interpolate("/sim/current-view/x-offset-m", math.sin(factor*1.6)*(1.34+driverpos/5),0.1);
+					interpolate("/sim/current-view/y-offset-m", math.cos(factor*1.9)*(1.36 - godown/1300 + lookup/12 + driverpos/4),0.1);
 				}else{
-					setprop("/sim/current-view/x-offset-m", math.sin(factor*2.0)*(1.34+driverpos/5));
-					setprop("/sim/current-view/y-offset-m", math.cos(factor*2.4)*(1.36 - godown/1300 + lookup/12 + driverpos/4));
+					interpolate("/sim/current-view/x-offset-m", math.sin(factor*2.0)*(1.34+driverpos/5),0.1);
+					interpolate("/sim/current-view/y-offset-m", math.cos(factor*2.4)*(1.36 - godown/1300 + lookup/12 + driverpos/4), 0.1);
 				}
 			}else{
 				if(onwork == 1){

@@ -181,7 +181,23 @@
   	      <halign>right</halign>
   	    </text>
   	  </group>
-	  
+
+  	  <group>
+  	    <layout>hbox</layout>
+  	    <text>
+  	      <label>Bopfingen - Germany (EDPA) .........................................................</label>
+  	      <halign>left</halign>
+  	    </text>
+  	    <input>
+  	      <property>/BMW-S-RR/BO/race-laps</property>
+  	      <type>INTEGER</type>
+  	    </input>
+  	    <text>
+  	      <label>laps</label>
+  	      <halign>right</halign>
+  	    </text>
+  	  </group>	  
+	  	  
 	  <hrule/>
 
   	  <group>
