@@ -55,7 +55,19 @@ var loop = func {
 			setprop("/sim/current-view/heading-offset-deg", 160);
 			setprop("/controls/BMW-S-RR/driver-looks-back",1);
 		}else{
-			setprop("/sim/current-view/heading-offset-deg", 0);
+			var hdgpos = 0;
+		    var posi = getprop("/controls/flight/aileron-manual") or 0;
+		  	if(posi > 0.3 and getprop("/controls/hangoff") == 1){
+				hdgpos = 360 - 20*posi;
+		  		interpolate("/sim/current-view/goal-heading-offset-deg", hdgpos,0.125);
+		  	}else if (posi < -0.3 and getprop("/controls/hangoff") == 1){
+				hdgpos = 20*abs(posi);
+		  		interpolate("/sim/current-view/goal-heading-offset-deg", hdgpos,0.125);
+			}else if (posi > 0 and posi < 0.3 and getprop("/controls/hangoff") == 1){
+				setprop("/sim/current-view/goal-heading-offset-deg", 360);
+			}else{
+				setprop("/sim/current-view/goal-heading-offset-deg", 0);
+			}
 			setprop("/controls/BMW-S-RR/driver-looks-back",0);
 		}
 	}
