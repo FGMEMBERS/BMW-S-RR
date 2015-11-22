@@ -53,7 +53,7 @@ var loop = func {
 	setprop("/gear/gear/mzaehler", gefahrenem);
 	setprop("/gear/gear/dmzaehler", tagesm);
 	
-	help_win.write(sprintf("Geschwindigkeit in m/s: %.2f Gesamt m: %.1f", kmh, gefahrenem));
+	#help_win.write(sprintf("Geschwindigkeit in m/s: %.2f Gesamt m: %.1f", kmh, gefahrenem));
 
 	# shoulder view helper
 	var cv = getprop("sim/current-view/view-number") or 0;
