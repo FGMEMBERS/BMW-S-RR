@@ -44,6 +44,17 @@ var ascon = props.globals.initNode("/controls/BMW-S-RR/ASC/on-off",1,"BOOL");
 
 var loop = func {
 
+	var msec = getprop("/gear/gear/rollspeed-ms") or 0;
+	var kmh = msec*3600/1000;
+	var gefahrenem = getprop("/gear/gear/mzaehler") or 0;
+	var tagesm = getprop("/gear/gear/dmzaehler") or 0;
+	gefahrenem = gefahrenem + msec/8*1.16;
+	tagesm = tagesm + msec/8*1.16;
+	setprop("/gear/gear/mzaehler", gefahrenem);
+	setprop("/gear/gear/dmzaehler", tagesm);
+	
+	help_win.write(sprintf("Geschwindigkeit in m/s: %.2f Gesamt m: %.1f", kmh, gefahrenem));
+
 	# shoulder view helper
 	var cv = getprop("sim/current-view/view-number") or 0;
 	var apos = getprop("/devices/status/keyboard/event/key") or 0;
@@ -147,22 +158,22 @@ var loop = func {
 			vmax = 0;
 			fastcircuit.setValue(0);
 		} else if (gear.getValue() == 1) {
-			vmax = 50;
+			vmax = 70;
 			fastcircuit.setValue(0.1);
 		} else if (gear.getValue() == 2) {
-			vmax =  70;
+			vmax =  90;
 			fastcircuit.setValue(0.2);
 		} else if (gear.getValue() == 3) {
-			vmax = 100;
+			vmax = 110;
 			fastcircuit.setValue(0.3);
 		} else if (gear.getValue() == 4) {
-			vmax = 130;
+			vmax = 140;
 			fastcircuit.setValue(0.4);
 		} else if (gear.getValue() == 5) {
 			vmax = 170;
 			fastcircuit.setValue(0.5);
 		} else if (gear.getValue() == 6) {
-			vmax = 205;
+			vmax = 210;
 			fastcircuit.setValue(0.6);
 		}
 

@@ -163,18 +163,17 @@ setlistener("/controls/engines/engine[0]/throttle", func (position){
 
 #----- speed meter selection ------
 
-setlistener("/instrumentation/airspeed-indicator/indicated-speed-kt", func (speed){
-	var groundspeed = getprop("/velocities/groundspeed-kt") or 0;
+setlistener("/gear/gear/rollspeed-ms", func (speed){
     var speed = speed.getValue();
 	if(getprop("/instrumentation/BMW-S-RR/speed-indicator/selection")){
-		if(groundspeed > 0.1){
-			setprop("/instrumentation/BMW-S-RR/speed-indicator/speed-meter", speed*1.15077945); # mph
+		if(speed > 0.1){
+			setprop("/instrumentation/BMW-S-RR/speed-indicator/speed-meter", speed*3600/1000*0.621371); # mph
 		}else{
 			setprop("/instrumentation/BMW-S-RR/speed-indicator/speed-meter", 0);
 		}
 	}else{
-		if(groundspeed > 0.1){
-			setprop("/instrumentation/BMW-S-RR/speed-indicator/speed-meter", speed*1.852); # km/h
+		if(speed > 0.1){
+			setprop("/instrumentation/BMW-S-RR/speed-indicator/speed-meter", speed*3600/1000); # km/h
 		}else{
 			setprop("/instrumentation/BMW-S-RR/speed-indicator/speed-meter", 0);
 		}

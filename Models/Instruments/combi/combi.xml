@@ -327,14 +327,36 @@
 		 <object-name>t-m-1.003</object-name>
 		 <object-name>t-m-10.003</object-name>
 		 <object-name>dots</object-name>
-      <condition>        
+      <condition> 
+		  <and>       
 		  <greater-than>
           	<property>BMW-S-RR/race-lap</property>
-		  <value>0</value>
-        </greater-than>
+		  	<value>0</value>
+          </greater-than>
+          <not><property>instrumentation/BMW-S-RR/speed-indicator/selection-distance</property></not>
+	  	  </and>
       </condition>
     </animation>
-
+    <animation>
+      <type>select</type>
+		 <object-name>d-hms</object-name>
+		 <object-name>d-km</object-name>
+		 <object-name>d-zkm</object-name>
+		 <object-name>d-hkm</object-name>
+		 <object-name>d-tkm</object-name>
+		 <object-name>d-ztkm</object-name>
+		 <object-name>d-hms.001</object-name>
+		 <object-name>d-km.001</object-name>
+		 <object-name>d-zkm.001</object-name>
+		 <object-name>d-hkm.001</object-name>
+		 <object-name>d-tkm.001</object-name>
+		 <object-name>d-ztkm.001</object-name>
+		 <object-name>dots.001</object-name>
+      <condition> 
+		  <property>instrumentation/BMW-S-RR/speed-indicator/selection-distance</property>
+      </condition>
+    </animation>
+	
     <animation>
       <type>select</type>
 		 <object-name>abs-warning</object-name>
@@ -421,8 +443,177 @@
                <y>0</y>
                <z>0</z>
            </axis>
-       </animation>1
-    
+       </animation>
+	   
+	   <!-- distance digits -->
+	   	 <animation>
+	   	    <type>textranslate</type>
+	   	    <object-name>d-hms</object-name>
+	   	    <property>gear/gear/mzaehler</property>
+	   	    <factor>0.001</factor>
+	   	    <step>100</step>
+	   	    <bias>0.005</bias>
+	   	    <axis>
+	   	        <x>1</x>
+	   	        <y>0</y>
+	   	        <z>0</z>
+	   	    </axis>
+	   	</animation>
+		
+     	 <animation>
+     	    <type>textranslate</type>
+     	    <object-name>d-km</object-name>
+     	    <property>gear/gear/mzaehler</property>
+     	    <factor>0.0001</factor>
+     	    <step>1000</step>
+     	    <bias>0.005</bias>
+     	    <axis>
+     	        <x>1</x>
+     	        <y>0</y>
+     	        <z>0</z>
+     	    </axis>
+     	</animation>
+	
+         <animation>
+             <type>textranslate</type>
+             <object-name>d-zkm</object-name>
+             <property>gear/gear/mzaehler</property>
+             <factor>0.00001</factor>
+             <step>10000</step>
+             <bias>0.005</bias>
+             <axis>
+                 <x>1</x>
+                 <y>0</y>
+                 <z>0</z>
+             </axis>
+         </animation>
+	
+         <animation>
+             <type>textranslate</type>
+             <object-name>d-hkm</object-name>
+             <property>gear/gear/mzaehler</property>
+             <factor>0.000001</factor>
+             <step>100000</step>
+             <bias>0.005</bias>
+             <axis>
+                 <x>1</x>
+                 <y>0</y>
+                 <z>0</z>
+             </axis>
+         </animation>
+	
+         <animation>
+             <type>textranslate</type>
+             <object-name>d-tkm</object-name>
+             <property>gear/gear/mzaehler</property>
+             <factor>0.0000001</factor>
+             <step>1000000</step>
+             <bias>0.005</bias>
+             <axis>
+                 <x>1</x>
+                 <y>0</y>
+                 <z>0</z>
+             </axis>
+         </animation>
+	
+         <animation>
+             <type>textranslate</type>
+             <object-name>d-ztkm</object-name>
+             <property>gear/gear/mzaehler</property>
+             <factor>0.00000001</factor>
+             <step>10000000</step>
+             <bias>0.005</bias>
+             <axis>
+                 <x>1</x>
+                 <y>0</y>
+                 <z>0</z>
+             </axis>
+         </animation>
+  	   <!-- day distance digits -->
+  	   	 <animation>
+  	   	    <type>textranslate</type>
+  	   	    <object-name>d-hms.001</object-name>
+  	   	    <property>gear/gear/dmzaehler</property>
+  	   	    <factor>0.001</factor>
+  	   	    <step>100</step>
+  	   	    <bias>0.005</bias>
+  	   	    <axis>
+  	   	        <x>1</x>
+  	   	        <y>0</y>
+  	   	        <z>0</z>
+  	   	    </axis>
+  	   	</animation>
+		
+       	 <animation>
+       	    <type>textranslate</type>
+       	    <object-name>d-km.001</object-name>
+       	    <property>gear/gear/dmzaehler</property>
+       	    <factor>0.0001</factor>
+       	    <step>1000</step>
+       	    <bias>0.005</bias>
+       	    <axis>
+       	        <x>1</x>
+       	        <y>0</y>
+       	        <z>0</z>
+       	    </axis>
+       	</animation>
+	
+           <animation>
+               <type>textranslate</type>
+               <object-name>d-zkm.001</object-name>
+               <property>gear/gear/dmzaehler</property>
+               <factor>0.00001</factor>
+               <step>10000</step>
+               <bias>0.005</bias>
+               <axis>
+                   <x>1</x>
+                   <y>0</y>
+                   <z>0</z>
+               </axis>
+           </animation>
+	
+           <animation>
+               <type>textranslate</type>
+               <object-name>d-hkm.001</object-name>
+               <property>gear/gear/dmzaehler</property>
+               <factor>0.000001</factor>
+               <step>100000</step>
+               <bias>0.005</bias>
+               <axis>
+                   <x>1</x>
+                   <y>0</y>
+                   <z>0</z>
+               </axis>
+           </animation>
+	
+           <animation>
+               <type>textranslate</type>
+               <object-name>d-tkm.001</object-name>
+               <property>gear/gear/dmzaehler</property>
+               <factor>0.0000001</factor>
+               <step>1000000</step>
+               <bias>0.005</bias>
+               <axis>
+                   <x>1</x>
+                   <y>0</y>
+                   <z>0</z>
+               </axis>
+           </animation>
+	
+           <animation>
+               <type>textranslate</type>
+               <object-name>d-ztkm.001</object-name>
+               <property>gear/gear/dmzaehler</property>
+               <factor>0.00000001</factor>
+               <step>10000000</step>
+               <bias>0.005</bias>
+               <axis>
+                   <x>1</x>
+                   <y>0</y>
+                   <z>0</z>
+               </axis>
+           </animation>
+		   		     
    <!-- selection -->
        <animation>
            <type>pick</type>
@@ -440,7 +631,24 @@
                </binding>           
            </action>
        </animation>	
-
+	   
+       <animation>
+           <type>pick</type>
+           <object-name>select-button-plane.001</object-name>
+   		<visible>false</visible>
+           <action>
+    	    <button>0</button>
+               <binding>	    
+   	    	  <command>property-toggle</command>
+   			<property>instrumentation/BMW-S-RR/speed-indicator/selection-distance</property>
+   			<step>1</step>
+   			<min>0</min>
+   			<max>1</max>
+   			<wrap>1</wrap>		
+               </binding>           
+           </action>
+       </animation>	
+	   
    	 <animation>
    	    <type>textranslate</type>
    	    <object-name>arrow</object-name>

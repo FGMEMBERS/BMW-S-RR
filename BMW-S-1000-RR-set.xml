@@ -315,6 +315,7 @@ and have fun!</text>
 		<path>/controls/flight/select-throttle-input</path>
 		<path>/controls/BMW-S-RR/old-mens-mode</path>
 		<path>/controls/hang-off-speed</path>
+		<path>/gear/gear/mzaehler</path>
 	</aircraft-data> 
 	<current-view>
 		<x-offset-m>0</x-offset-m>
