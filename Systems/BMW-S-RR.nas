@@ -45,10 +45,10 @@ var forkcontrol = func{
 	#helper turn shoulder to look back
 	if(cv == 0 and !du){
 		if(apos == 49 and press){
-			setprop("/sim/current-view/heading-offset-deg", 145);
+			setprop("/sim/current-view/heading-offset-deg", 155);
 			setprop("/controls/BMW-S-RR/driver-looks-back",1);
 		}else if(apos == 50 and press){
-			setprop("/sim/current-view/heading-offset-deg", -145);
+			setprop("/sim/current-view/heading-offset-deg", -155);
 			setprop("/controls/BMW-S-RR/driver-looks-back",1);
 		}else{
 			var hdgpos = 0;
@@ -66,6 +66,15 @@ var forkcontrol = func{
 			}
 			setprop("/controls/BMW-S-RR/driver-looks-back",0);
 		}
+	}
+	
+	# distance calculator helper
+	if(getprop("/instrumentation/BMW-S-RR/speed-indicator/selection")){
+		setprop("/instrumentation/BMW-S-RR/distance-calculator/miles", getprop("/instrumentation/BMW-S-RR/distance-calculator/mzaehler")*0.621371192); # miles on bike
+		setprop("/instrumentation/BMW-S-RR/distance-calculator/dmiles", getprop("/instrumentation/BMW-S-RR/distance-calculator/dmzaehler")*0.621371192); # miles a day
+	}else{
+		setprop("/instrumentation/BMW-S-RR/distance-calculator/miles", getprop("/instrumentation/BMW-S-RR/distance-calculator/mzaehler")); # km on bike
+		setprop("/instrumentation/BMW-S-RR/distance-calculator/dmiles", getprop("/instrumentation/BMW-S-RR/distance-calculator/dmzaehler")); # km a day
 	}
 	
 	settimer(forkcontrol, 0);

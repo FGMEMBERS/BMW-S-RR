@@ -46,12 +46,12 @@ var loop = func {
 
 	var msec = getprop("/gear/gear/rollspeed-ms") or 0;
 	var kmh = msec*3600/1000;
-	var gefahrenem = getprop("/gear/gear/mzaehler") or 0;
-	var tagesm = getprop("/gear/gear/dmzaehler") or 0;
+	var gefahrenem = getprop("/instrumentation/BMW-S-RR/distance-calculator/mzaehler") or 0;
+	var tagesm = getprop("/instrumentation/BMW-S-RR/distance-calculator/dmzaehler") or 0;
 	gefahrenem = gefahrenem + msec/8*1.16;  # 0.125 sec * 8 / 1.16 correction value for the wheel dimension
 	tagesm = tagesm + msec/8*1.16;
-	setprop("/gear/gear/mzaehler", gefahrenem);
-	setprop("/gear/gear/dmzaehler", tagesm);
+	setprop("/instrumentation/BMW-S-RR/distance-calculator/mzaehler", gefahrenem);
+	setprop("/instrumentation/BMW-S-RR/distance-calculator/dmzaehler", tagesm);
 	
 	#help_win.write(sprintf("Geschwindigkeit in m/s: %.2f Gesamt m: %.1f", kmh, gefahrenem));
 

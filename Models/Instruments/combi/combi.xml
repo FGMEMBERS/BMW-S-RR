@@ -449,7 +449,7 @@
 	   	 <animation>
 	   	    <type>textranslate</type>
 	   	    <object-name>d-hms</object-name>
-	   	    <property>gear/gear/mzaehler</property>
+	   	    <property>instrumentation/BMW-S-RR/distance-calculator/miles</property>
 	   	    <factor>0.001</factor>
 	   	    <step>100</step>
 	   	    <bias>0.005</bias>
@@ -463,7 +463,7 @@
      	 <animation>
      	    <type>textranslate</type>
      	    <object-name>d-km</object-name>
-     	    <property>gear/gear/mzaehler</property>
+     	    <property>instrumentation/BMW-S-RR/distance-calculator/miles</property>
      	    <factor>0.0001</factor>
      	    <step>1000</step>
      	    <bias>0.005</bias>
@@ -477,7 +477,7 @@
          <animation>
              <type>textranslate</type>
              <object-name>d-zkm</object-name>
-             <property>gear/gear/mzaehler</property>
+             <property>instrumentation/BMW-S-RR/distance-calculator/miles</property>
              <factor>0.00001</factor>
              <step>10000</step>
              <bias>0.005</bias>
@@ -491,7 +491,7 @@
          <animation>
              <type>textranslate</type>
              <object-name>d-hkm</object-name>
-             <property>gear/gear/mzaehler</property>
+             <property>instrumentation/BMW-S-RR/distance-calculator/miles</property>
              <factor>0.000001</factor>
              <step>100000</step>
              <bias>0.005</bias>
@@ -505,7 +505,7 @@
          <animation>
              <type>textranslate</type>
              <object-name>d-tkm</object-name>
-             <property>gear/gear/mzaehler</property>
+             <property>instrumentation/BMW-S-RR/distance-calculator/miles</property>
              <factor>0.0000001</factor>
              <step>1000000</step>
              <bias>0.005</bias>
@@ -519,7 +519,7 @@
          <animation>
              <type>textranslate</type>
              <object-name>d-ztkm</object-name>
-             <property>gear/gear/mzaehler</property>
+             <property>instrumentation/BMW-S-RR/distance-calculator/miles</property>
              <factor>0.00000001</factor>
              <step>10000000</step>
              <bias>0.005</bias>
@@ -533,7 +533,7 @@
   	   	 <animation>
   	   	    <type>textranslate</type>
   	   	    <object-name>d-hms.001</object-name>
-  	   	    <property>gear/gear/dmzaehler</property>
+  	   	    <property>instrumentation/BMW-S-RR/distance-calculator/dmiles</property>
   	   	    <factor>0.001</factor>
   	   	    <step>100</step>
   	   	    <bias>0.005</bias>
@@ -547,7 +547,7 @@
        	 <animation>
        	    <type>textranslate</type>
        	    <object-name>d-km.001</object-name>
-       	    <property>gear/gear/dmzaehler</property>
+       	    <property>instrumentation/BMW-S-RR/distance-calculator/dmiles</property>
        	    <factor>0.0001</factor>
        	    <step>1000</step>
        	    <bias>0.005</bias>
@@ -561,7 +561,7 @@
            <animation>
                <type>textranslate</type>
                <object-name>d-zkm.001</object-name>
-               <property>gear/gear/dmzaehler</property>
+               <property>instrumentation/BMW-S-RR/distance-calculator/dmiles</property>
                <factor>0.00001</factor>
                <step>10000</step>
                <bias>0.005</bias>
@@ -575,7 +575,7 @@
            <animation>
                <type>textranslate</type>
                <object-name>d-hkm.001</object-name>
-               <property>gear/gear/dmzaehler</property>
+               <property>instrumentation/BMW-S-RR/distance-calculator/dmiles</property>
                <factor>0.000001</factor>
                <step>100000</step>
                <bias>0.005</bias>
@@ -589,7 +589,7 @@
            <animation>
                <type>textranslate</type>
                <object-name>d-tkm.001</object-name>
-               <property>gear/gear/dmzaehler</property>
+               <property>instrumentation/BMW-S-RR/distance-calculator/dmiles</property>
                <factor>0.0000001</factor>
                <step>1000000</step>
                <bias>0.005</bias>
@@ -603,7 +603,7 @@
            <animation>
                <type>textranslate</type>
                <object-name>d-ztkm.001</object-name>
-               <property>gear/gear/dmzaehler</property>
+               <property>instrumentation/BMW-S-RR/distance-calculator/dmiles</property>
                <factor>0.00000001</factor>
                <step>10000000</step>
                <bias>0.005</bias>
