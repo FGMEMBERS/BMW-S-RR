@@ -268,7 +268,20 @@
         </action>
     </animation>
 	
-
+    <animation>
+        <type>pick</type>
+        <object-name>DMiles.btn</object-name>
+		<visible>true</visible>
+        <action>
+ 	    <button>0</button>
+            <binding>	    
+	    	  <command>property-assign</command>
+			  <property>instrumentation/BMW-S-RR/distance-calculator/dmzaehler</property>
+			  <value>0</value>	
+            </binding>           
+        </action>
+    </animation>
+	
 	<animation>
 	  <type>rotate</type>
 	  <object-name>ASC.btn</object-name>
