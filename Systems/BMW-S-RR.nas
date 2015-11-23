@@ -36,7 +36,39 @@ var forkcontrol = func{
 	}else{
 		setprop("/controls/gear/brake-front", 0);
 	}
-	settimer(forkcontrol, 0.05);
+	
+	# shoulder view helper
+	var cv = getprop("sim/current-view/view-number") or 0;
+	var apos = getprop("/devices/status/keyboard/event/key") or 0;
+	var press = getprop("/devices/status/keyboard/event/pressed") or 0;
+	var du = getprop("/controls/BMW-S-RR/driver-up") or 0;
+	#helper turn shoulder to look back
+	if(cv == 0 and !du){
+		if(apos == 49 and press){
+			setprop("/sim/current-view/heading-offset-deg", 145);
+			setprop("/controls/BMW-S-RR/driver-looks-back",1);
+		}else if(apos == 50 and press){
+			setprop("/sim/current-view/heading-offset-deg", -145);
+			setprop("/controls/BMW-S-RR/driver-looks-back",1);
+		}else{
+			var hdgpos = 0;
+		    var posi = getprop("/controls/flight/aileron-manual") or 0;
+		  	if(posi > 0.0001 and getprop("/controls/hangoff") == 1){
+				hdgpos = 360 - 27*posi;
+		  		setprop("/sim/current-view/goal-heading-offset-deg", hdgpos);
+		  	}else if (posi < -0.0001 and getprop("/controls/hangoff") == 1){
+				hdgpos = 27*abs(posi);
+		  		setprop("/sim/current-view/goal-heading-offset-deg", hdgpos);
+			}else if (posi > 0 and posi < 0.0001 and getprop("/controls/hangoff") == 1){
+				setprop("/sim/current-view/goal-heading-offset-deg", 360);
+			}else{
+				setprop("/sim/current-view/goal-heading-offset-deg", 0);
+			}
+			setprop("/controls/BMW-S-RR/driver-looks-back",0);
+		}
+	}
+	
+	settimer(forkcontrol, 0);
 };
 
 forkcontrol();
@@ -110,11 +142,11 @@ setlistener("/surface-positions/left-aileron-pos-norm", func{
 				factor = (abs(factor) > abs(position)) ? position : factor;
 				if(onwork == 0){
 					settimer(func{setprop("/controls/hangoff",1)},0.1);
-					interpolate("/sim/current-view/x-offset-m", math.sin(factor*2.0)*(1.34+driverpos/5),0.1);
-					interpolate("/sim/current-view/y-offset-m", math.cos(factor*2.4)*(1.36 - godown/1300 + lookup/12 + driverpos/4),0.1);
+					interpolate("/sim/current-view/x-offset-m", math.sin(factor*1.8)*(1.34+driverpos/5),0.1);
+					interpolate("/sim/current-view/y-offset-m", math.cos(factor*2.1)*(1.36 - godown/1300 + lookup/12 + driverpos/4),0.1);
 				}else{
-					setprop("/sim/current-view/x-offset-m", math.sin(factor*2.0)*(1.34+driverpos/5));
-					setprop("/sim/current-view/y-offset-m", math.cos(factor*2.2)*(1.36 - godown/1300 + lookup/12 + driverpos/4));
+					setprop("/sim/current-view/x-offset-m", math.sin(factor*1.8)*(1.34+driverpos/5));
+					setprop("/sim/current-view/y-offset-m", math.cos(factor*2.1)*(1.36 - godown/1300 + lookup/12 + driverpos/4));
 				}
 			}else{
 				if(onwork == 1){

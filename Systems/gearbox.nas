@@ -48,40 +48,12 @@ var loop = func {
 	var kmh = msec*3600/1000;
 	var gefahrenem = getprop("/gear/gear/mzaehler") or 0;
 	var tagesm = getprop("/gear/gear/dmzaehler") or 0;
-	gefahrenem = gefahrenem + msec/8*1.16;
+	gefahrenem = gefahrenem + msec/8*1.16;  # 0.125 sec * 8 / 1.16 correction value for the wheel dimension
 	tagesm = tagesm + msec/8*1.16;
 	setprop("/gear/gear/mzaehler", gefahrenem);
 	setprop("/gear/gear/dmzaehler", tagesm);
 	
 	#help_win.write(sprintf("Geschwindigkeit in m/s: %.2f Gesamt m: %.1f", kmh, gefahrenem));
-
-	# shoulder view helper
-	var cv = getprop("sim/current-view/view-number") or 0;
-	var apos = getprop("/devices/status/keyboard/event/key") or 0;
-	var press = getprop("/devices/status/keyboard/event/pressed") or 0;
-	var du = getprop("/controls/BMW-S-RR/driver-up") or 0;
-	#helper turn shoulder to look back
-	if(cv == 0 and !du){
-		if(apos == 49 and press){
-			setprop("/sim/current-view/heading-offset-deg", 160);
-			setprop("/controls/BMW-S-RR/driver-looks-back",1);
-		}else{
-			var hdgpos = 0;
-		    var posi = getprop("/controls/flight/aileron-manual") or 0;
-		  	if(posi > 0.3 and getprop("/controls/hangoff") == 1){
-				hdgpos = 360 - 20*posi;
-		  		interpolate("/sim/current-view/goal-heading-offset-deg", hdgpos,0.125);
-		  	}else if (posi < -0.3 and getprop("/controls/hangoff") == 1){
-				hdgpos = 20*abs(posi);
-		  		interpolate("/sim/current-view/goal-heading-offset-deg", hdgpos,0.125);
-			}else if (posi > 0 and posi < 0.3 and getprop("/controls/hangoff") == 1){
-				setprop("/sim/current-view/goal-heading-offset-deg", 360);
-			}else{
-				setprop("/sim/current-view/goal-heading-offset-deg", 0);
-			}
-			setprop("/controls/BMW-S-RR/driver-looks-back",0);
-		}
-	}
 
 	# properties for ABS and ASC at the bottom of this script
 	var comp_m = getprop("/gear/gear[1]/compression-m") or 0;
@@ -142,7 +114,9 @@ var loop = func {
 		
 		# overgspeed the engine
 		if(rpm.getValue() > (maxrpm - 700)){
-			killed.setValue(killed.getValue() + 1/maxhealth);
+			if(engine_rpm_regulation.getValue() < 1){
+				killed.setValue(killed.getValue() + 1/maxhealth);
+			}
 			if(killed.getValue() >= 1)rpm.setValue(40000);
 		}
 		if(killed.getValue() >= 1){
@@ -225,10 +199,10 @@ var loop = func {
 		}
 		
 		# Automatic RPM overspeed regulation
-		if(engine_rpm_regulation.getValue() == 1 and rpm.getValue() > maxrpm-1500){
+		if(engine_rpm_regulation.getValue() == 1 and rpm.getValue() > maxrpm-500){
 			propulsion.setValue(0);
 			if (speed > 20) engine_brake.setValue(0.8);
-			rpm.setValue(maxrpm-1000);
+			rpm.setValue(maxrpm-100);
 			setprop("/controls/BMW-S-RR/ctrl-light-overspeed", 1);
 		}else{
 			setprop("/controls/BMW-S-RR/ctrl-light-overspeed", 0);
