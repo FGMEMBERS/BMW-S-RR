@@ -6,7 +6,7 @@ MATERIAL "weste" rgb 0.8000 0.8000 0.8000  amb 1.0000 1.0000 1.0000  emis 0.0000
 MATERIAL "Transparent" rgb 0.8000 0.8000 0.8000  amb 1.0000 1.0000 1.0000  emis 0.0000 0.0000 0.0000  spec 0.5000 0.5000 0.5000  shi 50 trans 0.6000
 OBJECT world
 name "Blender_export__driver_special_r.ac"
-kids 19
+kids 18
 OBJECT poly
 name "avantbrasD"
 loc 0.1006276 0.9254093 -0.1355736
@@ -3014,12 +3014,6 @@ refs 4
 kids 0
 OBJECT poly
 name "brasG"
-loc 0.1963440 0.9982461 0.1604839
-texture "driver.png"
-texrep 1 1
-kids 0
-OBJECT poly
-name "brasG.001"
 loc -0.1467152 0.9007603 0.2554358
 texture "driver.png"
 texrep 1 1
