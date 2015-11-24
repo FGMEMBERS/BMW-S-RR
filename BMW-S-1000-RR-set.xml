@@ -248,6 +248,7 @@ and have fun!</text>
  			<int n="2" alias="/controls/flag-info"/>  <!-- for the livetiming roadracer script -->
  			<int n="3" alias="/sim/crashed"/>  <!-- no driver if crashed -->
  			<int n="4" alias="/controls/BMW-S-RR/driver-looks-back"/>  <!-- driver looks back over his shoulder -->
+ 			<int n="5" alias="/controls/BMW-S-RR/driver-looks-back-right"/>  <!-- driver looks back over his shoulder -->
 		 </generic>
 	</multiplay>
 

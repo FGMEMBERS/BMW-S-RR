@@ -49,7 +49,7 @@ var forkcontrol = func{
 			setprop("/controls/BMW-S-RR/driver-looks-back",1);
 		}else if(apos == 50 and press){
 			setprop("/sim/current-view/heading-offset-deg", -155);
-			setprop("/controls/BMW-S-RR/driver-looks-back",1);
+			setprop("/controls/BMW-S-RR/driver-looks-back-right",1);
 		}else{
 			var hdgpos = 0;
 		    var posi = getprop("/controls/flight/aileron-manual") or 0;
@@ -65,6 +65,7 @@ var forkcontrol = func{
 				setprop("/sim/current-view/goal-heading-offset-deg", 0);
 			}
 			setprop("/controls/BMW-S-RR/driver-looks-back",0);
+			setprop("/controls/BMW-S-RR/driver-looks-back-right",0);
 		}
 	}
 	

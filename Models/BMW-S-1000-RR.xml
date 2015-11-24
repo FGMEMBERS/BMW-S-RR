@@ -233,6 +233,9 @@
         <not>
           <property>sim/multiplay/generic/int[4]</property>
         </not>
+        <not>
+          <property>sim/multiplay/generic/int[5]</property>
+        </not>
       </condition>
     </animation>
 	
@@ -250,7 +253,24 @@
         </not>
         <property>sim/multiplay/generic/int[4]</property>
       </condition>
+    </animation>
+	
+  	<model>
+  		<name>Driver_quick_glance_over_shoulder_right</name>
+  		<path>Aircraft/BMW-S-RR/Models/Driver/driver_special_r.xml</path>
+  	</model>
+
+    <animation>
+      <type>select</type>
+      <object-name>Driver_quick_glance_over_shoulder_right</object-name>
+      <condition>
+        <not>
+          <property>sim/multiplay/generic/int[3]</property>
+        </not>
+        <property>sim/multiplay/generic/int[5]</property>
+      </condition>
     </animation>	
+		
  
   <!-- right left -->
   <animation>
@@ -259,7 +279,8 @@
       <object-name>SL</object-name>
       <object-name>TRANSPONDER</object-name>
       <object-name>Driver</object-name>
-  	<object-name>Driver_quick_glance_over_shoulder</object-name>
+  	  <object-name>Driver_quick_glance_over_shoulder</object-name>
+  	  <object-name>Driver_quick_glance_over_shoulder_right</object-name>
       <object-name>carrd</object-name>
       <object-name>carrd01</object-name>
       <object-name>carrd03</object-name>
@@ -332,6 +353,7 @@
       <object-name>TRANSPONDER</object-name>
       <object-name>Driver</object-name>
   	  <object-name>Driver_quick_glance_over_shoulder</object-name>
+  	  <object-name>Driver_quick_glance_over_shoulder_right</object-name>
       <object-name>carrd</object-name>
       <object-name>carrd01</object-name>
       <object-name>carrd03</object-name>
