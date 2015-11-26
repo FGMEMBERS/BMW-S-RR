@@ -216,7 +216,7 @@ var loop = func {
 			setprop("/controls/BMW-S-RR/ASC/ctrl-light", 0);
 		}
 		
-		#help_win.write(sprintf("Propulsion: %.2f", propulsion.getValue()));
+		#help_win.write(sprintf("Leistung (in PS): %.2f", propulsion.getValue()*273.85));
 
 	   	 if(rpm.getValue() < minrpm) rpm.setValue(minrpm);  # place after the rpm calculation
 	 
