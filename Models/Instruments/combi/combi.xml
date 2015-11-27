@@ -123,6 +123,18 @@
 		 <object-name>t-m-1.003</object-name>
 		 <object-name>t-m-10.003</object-name>
 		 <object-name>dots</object-name>
+		<object-name>d-hms</object-name>
+		<object-name>d-km</object-name>
+		<object-name>d-zkm</object-name>
+		<object-name>d-tkm</object-name>
+		<object-name>d-ztkm</object-name>
+		<object-name>d-hms.001</object-name>
+		<object-name>d-km.001</object-name>
+		<object-name>d-zkm.001</object-name>
+		<object-name>d-hkm.001</object-name>
+		<object-name>d-tkm.001</object-name>
+		<object-name>d-ztkm.001</object-name>
+		 <object-name>dots.001</object-name>
 	</animation>
 
 	<effect>
@@ -158,6 +170,18 @@
 		 <object-name>t-m-1.003</object-name>
 		 <object-name>t-m-10.003</object-name>
 		 <object-name>dots</object-name>
+		<object-name>d-hms</object-name>
+		<object-name>d-km</object-name>
+		<object-name>d-zkm</object-name>
+		<object-name>d-tkm</object-name>
+		<object-name>d-ztkm</object-name>
+		<object-name>d-hms.001</object-name>
+		<object-name>d-km.001</object-name>
+		<object-name>d-zkm.001</object-name>
+		<object-name>d-hkm.001</object-name>
+		<object-name>d-tkm.001</object-name>
+		<object-name>d-ztkm.001</object-name>
+		 <object-name>dots.001</object-name>
 	</effect>
 	
 
