@@ -113,7 +113,7 @@ var loop = func {
 		#inertia = (fuel_weight.getValue() + weight.getValue())/245; # 245 max. weight and fuel
 		
 		# overgspeed the engine
-		if(rpm.getValue() > (maxrpm - 700)){
+		if(rpm.getValue() > (maxrpm - 500)){
 			if(engine_rpm_regulation.getValue() < 1){
 				killed.setValue(killed.getValue() + 1/maxhealth);
 			}
@@ -199,11 +199,16 @@ var loop = func {
 		}
 		
 		# Automatic RPM overspeed regulation
-		if(engine_rpm_regulation.getValue() == 1 and rpm.getValue() > maxrpm-500){
-			propulsion.setValue(0);
-			if (speed > 20) engine_brake.setValue(0.8);
-			rpm.setValue(maxrpm-100);
-			setprop("/controls/BMW-S-RR/ctrl-light-overspeed", 1);
+		if(rpm.getValue() > maxrpm-750){
+			if(engine_rpm_regulation.getValue() == 1 ){
+				propulsion.setValue(0);
+				if (speed > 20) engine_brake.setValue(0.8);
+				rpm.setValue(maxrpm-100);
+				setprop("/controls/BMW-S-RR/ctrl-light-overspeed", 1);
+			}else{
+				setprop("/controls/BMW-S-RR/ctrl-light-overspeed", 1);
+			}
+			
 		}else{
 			setprop("/controls/BMW-S-RR/ctrl-light-overspeed", 0);
 		}
@@ -241,7 +246,6 @@ var loop = func {
 	# Anti - blog brake regulation
 	if(comp_m < 0.05 and brake_ctrl_right > 0.5 and brake_ctrl_left > 0.5 and gspeed > 70){
 		setprop("/controls/BMW-S-RR/ABS/ctrl-light", 1);
-		setprop("/controls/BMW-S-RR/ctrl-light-overspeed", 1);
 		setprop("/controls/BMW-S-RR/ABS/brake-right", brake_ctrl_right*0.34);
 		setprop("/controls/BMW-S-RR/ABS/brake-left", brake_ctrl_left*0.34);		
 	}else{
