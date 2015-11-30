@@ -10,21 +10,21 @@
  <fx>
      <engine>
 		<name>engine</name>
-		<path>Aircraft/BMW-S-RR/Sounds/BMW-S-RR-engine-high.wav</path>  <!--BMW-S-RR-engine -->
+		<path>/Aircraft/BMW-S-RR/Sounds/BMW-S-RR-engine-high.wav</path>  <!--BMW-S-RR-engine -->
 		<mode>looped</mode>
 		<volume>
 			<property>engines/engine/rpm</property>
+			<offset>0.001</offset>
 			<factor>0.0002</factor>
 			<min>0.0</min>
-			<max>0.9</max>
-			<offset>0.001</offset>
+			<max>1.0</max>
 		</volume>
 		<pitch>
 			<property>engines/engine/rpm</property>
+			<offset>0.4</offset>
 			<factor>0.000058</factor>
 			<min>0.0</min>
-			<max>0.1</max>
-			<offset>0.4</offset>
+			<max>1.0</max>
 		</pitch>
 		<reference-dist>10</reference-dist>
 		<max-dist>800</max-dist>
@@ -32,7 +32,7 @@
 
 	<engine>
 	    <name>enginecrash</name>
-	    <path>Aircraft/BMW-S-RR/Sounds/BMW-S-RR-broken.wav</path>
+	    <path>/Aircraft/BMW-S-RR/Sounds/BMW-S-RR-broken.wav</path>
 	    <mode>once</mode>
 	     <condition>
 		 <greater-than>

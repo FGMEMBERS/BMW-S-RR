@@ -8,7 +8,6 @@
 <PropertyList>
 
  <fx>
- 
   <crank>
    <name>crank</name>
    <mode>looped</mode>
@@ -42,7 +41,7 @@
   	    <name>engine</name>
   	    <path>Aircraft/BMW-S-RR/Sounds/BMW-S-RR-engine-high.wav</path>  <!--BMW-S-RR-engine -->
   	    <mode>looped</mode>
-	     <condition>	 
+	     <condition>
 		   <greater-than>
  	      	  	<property>/engines/engine/rpm</property>
 		   		<value>10</value>
@@ -50,17 +49,17 @@
 	    </condition>
   	    <volume>
   	      <property>/engines/engine/rpm</property>
+  	      <offset>0.001</offset>
   	      <factor>0.0002</factor>
   	      <min>0.1</min>
   	      <max>1.0</max>
-  	      <offset>0.001</offset>
   	    </volume>
   	    <pitch>
   	      <property>/engines/engine/rpm</property>
+	      <offset>0.2</offset>
 	      <factor>0.000058</factor>
 	      <min>0.0</min>
 	      <max>1.0</max>
-	      <offset>0.2</offset>
   	    </pitch>
   	  </engine>
 
