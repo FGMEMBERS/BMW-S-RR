@@ -15,7 +15,7 @@
 		<volume>
 			<property>engines/engine/rpm</property>
 			<factor>0.0002</factor>
-			<min>0.1</min>
+			<min>0.0</min>
 			<max>0.7</max>
 			<offset>0.001</offset>
 		</volume>
@@ -27,7 +27,7 @@
 			<offset>0.4</offset>
 		</pitch>
 		<reference-dist>10</reference-dist>
-		<max-dist>1100</max-dist>
+		<max-dist>800</max-dist>
     </engine>
 
 	<engine>
