@@ -56,8 +56,8 @@
   	    </volume>
   	    <pitch>
   	      <property>/engines/engine/rpm</property>
-	      <offset>0.15</offset>
-	      <factor>0.00007</factor>
+	      <offset>0.06</offset>
+	      <factor>0.0000782</factor>
 	      <min>0.0</min>
 	      <max>5.0</max>
   	    </pitch>
