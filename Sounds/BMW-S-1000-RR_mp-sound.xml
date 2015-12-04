@@ -16,7 +16,7 @@
 	      <property>engines/engine/rpm</property>
 	      <offset>0.01</offset>
 	      <factor>0.0002</factor>
-	      <min>0.3</min>
+	      <min>0.0</min>
 	      <max>1.0</max>
 		</volume>
   	    <pitch>
