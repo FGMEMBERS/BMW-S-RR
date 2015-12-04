@@ -13,19 +13,19 @@
 		<path>/Aircraft/BMW-S-RR/Sounds/BMW-S-RR-engine-high.wav</path>  <!--BMW-S-RR-engine -->
 		<mode>looped</mode>
 		<volume>
-			<property>engines/engine/rpm</property>
-			<offset>0.001</offset>
-			<factor>0.0002</factor>
-			<min>0.0</min>
-			<max>1.0</max>
+	      <property>/engines/engine/rpm</property>
+	      <offset>0.01</offset>
+	      <factor>0.0002</factor>
+	      <min>0.3</min>
+	      <max>1.0</max>
 		</volume>
-		<pitch>
-			<property>engines/engine/rpm</property>
-			<offset>0.4</offset>
-			<factor>0.000058</factor>
-			<min>0.0</min>
-			<max>1.0</max>
-		</pitch>
+  	    <pitch>
+  	      <property>/engines/engine/rpm</property>
+	      <offset>0.2</offset>
+	      <factor>0.00007</factor>
+	      <min>0.0</min>
+	      <max>5.0</max>
+  	    </pitch>
 		<reference-dist>10</reference-dist>
 		<max-dist>800</max-dist>
     </engine>
