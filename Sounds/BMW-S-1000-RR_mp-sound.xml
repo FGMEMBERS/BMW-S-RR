@@ -20,7 +20,7 @@
 	      <max>1.0</max>
 		</volume>
   	    <pitch>
-  	      <property>/engines/engine/rpm</property>
+  	      <property>engines/engine/rpm</property>
 	      <offset>0.06</offset>
 	      <factor>0.0000782</factor>
 	      <min>0.0</min>
