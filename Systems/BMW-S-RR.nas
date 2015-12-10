@@ -156,7 +156,7 @@ setlistener("/surface-positions/left-aileron-pos-norm", func{
 			var godown = getprop("/instrumentation/airspeed-indicator/indicated-speed-kt") or 0;
 			var lookup = getprop("/controls/gear/brake-right") or 0;
 			var onwork = getprop("/controls/hangoff") or 0;
-			if(godown > 10 and godown < hangoffspeed.getValue()){
+			if(godown < hangoffspeed.getValue()){
 				var factor = (position <= 0)? -0.6 : 0.6;
 				factor = (abs(factor) > abs(position)) ? position : factor;
 				if(onwork == 0){
@@ -198,8 +198,18 @@ setlistener("/controls/flight/elevator", func (position){
 	
 	# helper for throtte on throttle axis or elevator
 	var se = getprop("/controls/flight/select-throttle-input") or 0;
-	if (ms == 0 and se == 1 and position >= 0) setprop("/controls/flight/throttle-input", position);
+	if (ms == 0){
+		if(se == 1 and position >= 0) setprop("/controls/flight/throttle-input", position);
+		if(se == 0){
+			position = (position < 0) ? abs(position) : 0;
+			vortrieb = getprop("/engines/engine/propulsion") or 0;
+			setprop("/sim/weight[1]/weight-lb", position*400*vortrieb);
+		}
+	} 
 	if (ms == 1 and position >= 0) setprop("/controls/flight/throttle-input", position*4);
+	
+	
+	
 },0,1);
 
 
