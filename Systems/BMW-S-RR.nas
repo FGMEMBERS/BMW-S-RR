@@ -63,10 +63,12 @@ var forkcontrol = func{
 			var hdgpos = 0;
 		    var posi = getprop("/controls/flight/aileron-manual") or 0;
 		  	if(posi > 0.0001 and getprop("/controls/hangoff") == 1){
-				hdgpos = 360 - 27*posi;
+				hdgpos = 360 - 60*posi;
+				hdgpos = (hdgpos < 340) ? 340 : hdgpos;
 		  		setprop("/sim/current-view/goal-heading-offset-deg", hdgpos);
 		  	}else if (posi < -0.0001 and getprop("/controls/hangoff") == 1){
-				hdgpos = 27*abs(posi);
+				hdgpos = 60*abs(posi);
+				hdgpos = (hdgpos > 20) ? 20 : hdgpos;
 		  		setprop("/sim/current-view/goal-heading-offset-deg", hdgpos);
 			}else if (posi > 0 and posi < 0.0001 and getprop("/controls/hangoff") == 1){
 				setprop("/sim/current-view/goal-heading-offset-deg", 360);
