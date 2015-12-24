@@ -157,13 +157,17 @@ var loop = func {
 		if (gear.getValue() > 0 and clutch.getValue() == 0) {
 			if(fastcircuit.getValue() == 0.1){
 			  transmissionpower = throttle.getValue()*2;
-			  #setprop("/sim/weight[1]/weight-lb", throttle.getValue()*300);
+			  setprop("/sim/weight[1]/weight-lb", throttle.getValue()*300);
 			}else if(fastcircuit.getValue() == 0.2){
 			  transmissionpower = 0.9*throttle.getValue()-propulsion.getValue()/maxrpm;
-			  #setprop("/sim/weight[1]/weight-lb", throttle.getValue()*200);
+			}else if(fastcircuit.getValue() == 0.3){
+			  transmissionpower = 0.8*throttle.getValue()-propulsion.getValue()/maxrpm;
+			}else if(fastcircuit.getValue() == 0.4){
+			  transmissionpower = 0.7*throttle.getValue()-propulsion.getValue()/maxrpm;
+			}else if(fastcircuit.getValue() == 0.5){
+			  transmissionpower = 0.6*throttle.getValue()-propulsion.getValue()/maxrpm;
 			}else{
-			  transmissionpower = 0.65*throttle.getValue()-propulsion.getValue()/maxrpm;
-			  #setprop("/sim/weight[1]/weight-lb", 0);
+			  transmissionpower = 0.4*throttle.getValue()-propulsion.getValue()/maxrpm;
 			}
 			transmissionpower = transmissionpower * (1- killed.getValue());
 			propulsion.setValue(transmissionpower);
