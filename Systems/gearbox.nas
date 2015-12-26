@@ -78,7 +78,11 @@ var loop = func {
 	if (lastfastcircuit != fastcircuit.getValue()){
 			###### fastcircuit without clutch
 			if(fastcircuit.getValue() == 0){
-				gear.setValue(0);
+			    if(bwspeed < 2){
+					gear.setValue(0);
+				}else{
+					gear.setValue(1);
+				}
 				gearsound.setValue(1);
 			}else if(fastcircuit.getValue() > 0 and fastcircuit.getValue() < 0.11 ){
 				gear.setValue(1);
@@ -105,7 +109,6 @@ var loop = func {
 	} else { 
 		gear.setValue(lastgear);
 	}
-
 	lastgear = gear.getValue();
 
 	# ----------- ENGINE IS RUNNING --------------
@@ -160,8 +163,10 @@ var loop = func {
 			  setprop("/sim/weight[1]/weight-lb", throttle.getValue()*300);
 			}else if(fastcircuit.getValue() == 0.2){
 			  transmissionpower = 0.9*throttle.getValue()-propulsion.getValue()/maxrpm;
+			  setprop("/sim/weight[1]/weight-lb", throttle.getValue()*100);
 			}else if(fastcircuit.getValue() == 0.3){
 			  transmissionpower = 0.8*throttle.getValue()-propulsion.getValue()/maxrpm;
+			  setprop("/sim/weight[1]/weight-lb", 0);
 			}else if(fastcircuit.getValue() == 0.4){
 			  transmissionpower = 0.7*throttle.getValue()-propulsion.getValue()/maxrpm;
 			}else if(fastcircuit.getValue() == 0.5){
