@@ -63,12 +63,16 @@ var forkcontrol = func{
 			var hdgpos = 0;
 		    var posi = getprop("/controls/flight/aileron-manual") or 0;
 		  	if(posi > 0.0001 and getprop("/controls/hangoff") == 1){
-				hdgpos = 360 - 60*posi;
-				hdgpos = (hdgpos < 340) ? 340 : hdgpos;
+				var mw = 60 - ((210-bs)*60/210); #maxBlickwinkel - ((maxGeschwindigkeit-aktuelleGeschwindigkeit)*maxBlickwinkel/maxGeschwindigkeit)
+				hdgpos = 360 - mw*posi;
+				hdgpos = (hdgpos < 335) ? 335 : hdgpos;
+				#help_win.write(sprintf("Blickwinkel: %.2f", hdgpos));
 		  		setprop("/sim/current-view/goal-heading-offset-deg", hdgpos);
 		  	}else if (posi < -0.0001 and getprop("/controls/hangoff") == 1){
-				hdgpos = 60*abs(posi);
-				hdgpos = (hdgpos > 20) ? 20 : hdgpos;
+				var mw = 60 - ((210-bs)*60/210);
+				hdgpos = mw*abs(posi);
+				hdgpos = (hdgpos > 25) ? 25 : hdgpos;
+				#help_win.write(sprintf("Blickwinkel: %.2f", hdgpos));
 		  		setprop("/sim/current-view/goal-heading-offset-deg", hdgpos);
 			}else if (posi > 0 and posi < 0.0001 and getprop("/controls/hangoff") == 1){
 				setprop("/sim/current-view/goal-heading-offset-deg", 360);
