@@ -129,7 +129,7 @@
     <path>Aircraft/BMW-S-RR/Models/Instruments/combi/combi.xml</path>
     <offsets>
        <x-m> -0.714 </x-m>
-       <y-m>-0.02 </y-m>
+       <y-m>-0.02</y-m>
        <z-m> 0.95 </z-m>
       <pitch-deg> -50 </pitch-deg>
     </offsets>
