@@ -231,7 +231,10 @@ setlistener("/controls/engines/engine[0]/throttle", func (position){
 #----- speed meter selection ------
 
 setlistener("/gear/gear/rollspeed-ms", func (speed){
-    var speed = speed.getValue();
+	var speed = speed.getValue();
+    # only for manipulate the reset m function 
+	if (speed > 10) setprop("/controls/waiting", 1);
+	# speedmeter function
 	if(getprop("/instrumentation/BMW-S-RR/speed-indicator/selection")){
 		if(speed > 0.1){
 			setprop("/instrumentation/BMW-S-RR/speed-indicator/speed-meter", speed*3600/1000*0.621371); # mph
