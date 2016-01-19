@@ -223,7 +223,7 @@
   	      <binding>
 			  <command>dialog-apply</command>
 		  </binding>
-  	      <min>10.0</min>
+  	      <min>0.0</min>
 		  <max>320.0</max>
   	    </slider>
   	    <text>

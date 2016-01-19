@@ -22,9 +22,9 @@
   	    <pitch>
   	      <property>engines/engine/rpm</property>
 	      <offset>0.06</offset>
-	      <factor>0.0000782</factor>
+	      <factor>0.00008</factor>
 	      <min>0.0</min>
-	      <max>5.0</max>
+	      <max>5.5</max>
   	    </pitch>
 		<reference-dist>10</reference-dist>
 		<max-dist>800</max-dist>
