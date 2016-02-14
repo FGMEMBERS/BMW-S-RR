@@ -399,11 +399,11 @@
       </condition> 
       <property>surface-positions/left-aileron-pos-norm</property>
       <interpolation>
-		<entry><ind>-1.0 </ind><dep>    42 </dep></entry>
-        <entry><ind>-0.2 </ind><dep>    42 </dep></entry>
+		<entry><ind>-1.0 </ind><dep>    45 </dep></entry>
+        <entry><ind>-0.2 </ind><dep>    45 </dep></entry>
         <entry><ind> 0 </ind><dep>     0 </dep></entry>
-        <entry><ind> 0.2 </ind><dep>   -42 </dep></entry>
-        <entry><ind> 1.0 </ind><dep>   -42 </dep></entry>
+        <entry><ind> 0.2 </ind><dep>   -45 </dep></entry>
+        <entry><ind> 1.0 </ind><dep>   -45 </dep></entry>
       </interpolation>
       <center>
        <x-m> 0.0</x-m>
