@@ -153,7 +153,7 @@ setlistener("/controls/flight/aileron", func (position){
 			np = np/100;
 			interpolate("/controls/flight/aileron-manual", np,0.1);
 		}else{
-			var np = math.round(position*position*position*100);
+			var np = math.round(position*position*position*position*position*100);
 			np = np/100;
 			#print("NP: ", np);
 			# the *0.0625 is the calculation number for the 16clicks Oehlins steering damper
@@ -397,7 +397,7 @@ setlistener("sim/model/start-idling", func()
 			help_win_red.write("Is everything ok with you?");
 		}else{
 			help_win_red.write("5 SECONDS WAITING FOR REPLACEMENT!");
-			settimer(func{setprop("/controls/waiting", 0)}, 3);
+			settimer(func{setprop("/controls/waiting", 0)}, 2);
 		}
    }
   }, 1, 1);
