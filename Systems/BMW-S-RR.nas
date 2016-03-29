@@ -41,6 +41,7 @@ var forkcontrol = func{
 		}
 	}else{
 		var sensibility_fork = steeringdamper.getValue()*0.03;
+		sensibility_fork = (sensibility_fork < 0.1)? 0.1 : sensibility_fork;
 		interpolate("/controls/flight/fork", r, sensibility_fork);
 	}
 	if(bs > 38){
@@ -153,11 +154,12 @@ setlistener("/controls/flight/aileron", func (position){
 			np = np/100;
 			interpolate("/controls/flight/aileron-manual", np,0.1);
 		}else{
-			var np = math.round(position*position*position*position*position*100);
+			var np = math.round(position*position*position*100);
 			np = np/100;
 			#print("NP: ", np);
 			# the *0.0625 is the calculation number for the 16clicks Oehlins steering damper
 			var sensibility = (np == 0 or abs(np) < steeringdamper.getValue()*0.0625) ? steeringdamper.getValue()*0.0625 : abs(np);
+			sensibility = (sensibility < 0.1)? 0.1 : sensibility;
 			interpolate("/controls/flight/aileron-manual", np, sensibility);
 		}
 	}
