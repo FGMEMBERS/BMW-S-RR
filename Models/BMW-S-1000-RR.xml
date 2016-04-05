@@ -28,6 +28,8 @@
 
   <animation>
     <type>material</type>
+    <object-name>oehlinssup</object-name>
+    <object-name>oehlinssup.001</object-name>
     <object-name>carrd</object-name>
     <object-name>carrd01</object-name>
     <object-name>carrd03</object-name>
@@ -174,6 +176,16 @@
 	 </or>
     </condition>
   </animation>
+  
+  <model>
+	<name>OEHLINS</name>
+    <path>Aircraft/BMW-S-RR/Models/Instruments/oehlins/oehlins.xml</path>
+    <offsets>
+        <x-m> -0.46 </x-m>
+        <y-m> 0.0</y-m>
+        <z-m> 0.91 </z-m>
+    </offsets>
+  </model>
 
   <model>
 	<name>SMOKE</name>
@@ -216,6 +228,27 @@
       </greater-than>
     </condition>
   </animation>
+  
+  <model>
+	<name>REARLIGHT</name>
+    <path>Aircraft/BMW-S-RR/Models/Lights/rearlight.xml</path>
+    <offsets>
+      <x-m>0.72 </x-m>
+      <y-m>  0.0 </y-m>
+      <z-m>0.785 </z-m>
+    </offsets>
+  </model>
+  
+<animation>
+  <type>select</type>
+  <object-name>REARLIGHT</object-name>
+  <condition>
+	<greater-than>
+ 		<property>/sim/time/sun-angle-rad</property>
+		<value>1.4</value>
+	</greater-than>
+ </condition>
+</animation>
    
   <!-- Driver -->
   	<model>
@@ -278,6 +311,10 @@
       <object-name>COMBI</object-name>
       <object-name>SL</object-name>
       <object-name>TRANSPONDER</object-name>
+      <object-name>OEHLINS</object-name>
+      <object-name>REARLIGHT</object-name>
+      <object-name>oehlinssup</object-name>
+      <object-name>oehlinssup.001</object-name>
       <object-name>Driver</object-name>
   	  <object-name>Driver_quick_glance_over_shoulder</object-name>
   	  <object-name>Driver_quick_glance_over_shoulder_right</object-name>
@@ -351,9 +388,13 @@
       <object-name>COMBI</object-name>
       <object-name>SL</object-name>
       <object-name>TRANSPONDER</object-name>
+      <object-name>OEHLINS</object-name>
+      <object-name>REARLIGHT</object-name>
       <object-name>Driver</object-name>
   	  <object-name>Driver_quick_glance_over_shoulder</object-name>
   	  <object-name>Driver_quick_glance_over_shoulder_right</object-name>
+      <object-name>oehlinssup</object-name>
+      <object-name>oehlinssup.001</object-name>
       <object-name>carrd</object-name>
       <object-name>carrd01</object-name>
       <object-name>carrd03</object-name>
@@ -420,6 +461,8 @@
     <!-- front fork -->
     <animation>
   	  <type>rotate</type>
+        <object-name>OEHLINS</object-name>
+        <object-name>oehlinssup.001</object-name>
         <object-name>carrd05</object-name>
         <object-name>carrd06</object-name>
         <object-name>carrd07</object-name>

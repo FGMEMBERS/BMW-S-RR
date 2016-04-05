@@ -201,6 +201,38 @@
   	  <group>
   	    <layout>hbox</layout>
   	    <text>
+  	      <label>Qatar - Losail Circuit (OTBK) .........................................................</label>
+  	      <halign>left</halign>
+  	    </text>
+  	    <input>
+  	      <property>/BMW-S-RR/QA/race-laps</property>
+  	      <type>INTEGER</type>
+  	    </input>
+  	    <text>
+  	      <label>laps</label>
+  	      <halign>right</halign>
+  	    </text>
+  	  </group>	
+
+  	  <group>
+  	    <layout>hbox</layout>
+  	    <text>
+  	      <label>Argentina - Termas de Rio Hondo (SANR) .................................</label>
+  	      <halign>left</halign>
+  	    </text>
+  	    <input>
+  	      <property>/BMW-S-RR/TE/race-laps</property>
+  	      <type>INTEGER</type>
+  	    </input>
+  	    <text>
+  	      <label>laps</label>
+  	      <halign>right</halign>
+  	    </text>
+  	  </group>	
+	  	  
+  	  <group>
+  	    <layout>hbox</layout>
+  	    <text>
   	      <label>Bopfingen - Germany (EDPA) .........................................................</label>
   	      <halign>left</halign>
   	    </text>
@@ -215,29 +247,6 @@
   	  </group>	  
 	  	  
 	  <hrule/>
-
-  	  <group>
-  	    <layout>hbox</layout>
-  	    <slider>
-  	      <property>/controls/hang-off-speed</property>
-  	      <binding>
-			  <command>dialog-apply</command>
-		  </binding>
-  	      <min>0.0</min>
-		  <max>320.0</max>
-  	    </slider>
-  	    <text>
-  	      <property>/controls/hang-off-speed</property>
-  	      <label>0123456</label>
-  	      <format>%.1f</format>
-  	      <live>1</live>
-  	      <halign>right</halign>
-  	    </text>
-  	    <text>
-  	      <label>max. hang-off speed in mph</label>
-  	      <halign>right</halign>
-  	    </text>
-  	  </group>
 	  
       <group>
         <layout>hbox</layout>
@@ -251,6 +260,98 @@
         </button>
       </group>
 	  
+	  <hrule/>	  
+	  <hrule/>
+
+  	  <group>
+  	    <layout>hbox</layout>
+  	    <slider>		  
+		  <row>0</row>
+		  <col>0</col>
+  	      <halign>left</halign>
+  	      <property>/controls/hang-off-speed</property>
+  	      <binding>
+			  <command>dialog-apply</command>
+		  </binding>
+  	      <min>0.0</min>
+		  <max>320.0</max>
+  	    </slider>
+  	    <text>
+  		  <row>0</row>
+  		  <col>0</col>
+    	  <halign>left</halign>
+  	      <property>/controls/hang-off-speed</property>
+  	      <label>0123456</label>
+  	      <format>%.1f</format>
+  	      <live>true</live>
+  	    </text>
+  	    <text>  		 
+		  <row>0</row>
+  		  <col>1</col>
+    	  <halign>right</halign>
+  	      <label>............... max . hang-off speed in mph</label>
+  	    </text>
+  	  </group>
+
+  	  <group>
+  	    <layout>hbox</layout>
+  	    <slider>  		  
+		  <row>1</row>
+  		  <col>0</col>
+    	  <halign>left</halign>
+  	      <property>/controls/hang-off-view-deg</property>
+  	      <binding>
+			  <command>dialog-apply</command>
+		  </binding>
+  	      <min>0.0</min>
+		  <max>90.0</max>
+  	    </slider>
+  	    <text>  		  
+		  <row>1</row>
+  		  <col>0</col>
+    	  <halign>left</halign>
+  	      <property>/controls/hang-off-view-deg</property>
+  	      <label>0123456</label>
+  	      <format>%1.0f</format>
+  	      <live>true</live>
+  	    </text>
+  	    <text>  		  
+		  <row>1</row>
+  		  <col>1</col>
+    	  <halign>right</halign>
+  	      <label>................... max . hang-off view angle</label>
+  	    </text>
+  	  </group>	
+	  
+  	  <group>
+  	    <layout>hbox</layout>
+  	    <slider>  		  
+		  <row>2</row>
+  		  <col>0</col>
+    	  <halign>left</halign>
+  	      <property>/controls/steering-damper</property>
+  	      <binding>
+			  <command>dialog-apply</command>
+		  </binding>
+  	      <min>1</min>
+		  <max>16</max>
+  	    </slider>
+  	    <text>  		  
+		  <row>2</row>
+  		  <col>0</col>
+    	  <halign>left</halign>
+  	      <property>/controls/steering-damper</property>
+  	      <label>0123456</label>
+  	      <format>%1.0f</format>
+  	      <live>1</live>
+  	    </text>
+  	    <text>  		  
+		  <row>2</row>
+  		  <col>1</col>
+    	  <halign>right</halign>
+  	      <label>...... 16clicks Oehlins steering damper</label>
+  	    </text>
+  	  </group>	   	  
   <hrule/>
 
   <button>

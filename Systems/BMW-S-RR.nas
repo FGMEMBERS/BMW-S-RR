@@ -6,6 +6,8 @@
 var config_dlg = gui.Dialog.new("/sim/gui/dialogs/config/dialog", getprop("/sim/aircraft-dir")~"/Systems/config.xml");
 var hangoffspeed = props.globals.initNode("/controls/hang-off-speed",0,"DOUBLE");
 var hangoffhdg = props.globals.initNode("/controls/hang-off-hdg",0,"DOUBLE");
+var hangoffviewdeg = props.globals.initNode("/controls/hang-off-view-deg",0,"DOUBLE");
+var steeringdamper = props.globals.initNode("/controls/steering-damper",1,"DOUBLE");
 var waiting = props.globals.initNode("/controls/waiting",0,"DOUBLE");
 
 ################## Little Help Window on bottom of screen #################
@@ -38,7 +40,9 @@ var forkcontrol = func{
 			f.setValue(r);
 		}
 	}else{
-		f.setValue(r);
+		var sensibility_fork = steeringdamper.getValue()*0.03;
+		sensibility_fork = (sensibility_fork < 0.1)? 0.1 : sensibility_fork;
+		interpolate("/controls/flight/fork", r, sensibility_fork);
 	}
 	if(bs > 38){
 		setprop("/controls/gear/brake-front", bl);
@@ -70,16 +74,14 @@ var forkcontrol = func{
 			}
 			
 		  	if(posi > 0.0001 and getprop("/controls/hangoff") == 1){
-				var mw = 100 - ((210-bs)*100/210); #maxBlickwinkel - ((maxGeschwindigkeit-aktuelleGeschwindigkeit)*maxBlickwinkel/maxGeschwindigkeit)
-				hdgpos = 360 - mw*posi;
-				hdgpos = (hdgpos < 335) ? 335 : hdgpos;
+				hdgpos = 360 - 60*posi;
+				hdgpos = (hdgpos < (360 - hangoffviewdeg.getValue())) ? 360 - hangoffviewdeg.getValue() : hdgpos;
 				#help_win.write(sprintf("Blickwinkel: %.2f", hdgpos));
 		  		setprop("/sim/current-view/goal-heading-offset-deg", hdgpos);
 				setprop("/sim/current-view/goal-roll-offset-deg", sceneryposi);
 		  	}else if (posi < -0.0001 and getprop("/controls/hangoff") == 1){
-				var mw = 100 - ((210-bs)*100/210);
-				hdgpos = mw*abs(posi);
-				hdgpos = (hdgpos > 25) ? 25 : hdgpos;
+				hdgpos = 60*abs(posi);
+				hdgpos = (hdgpos > hangoffviewdeg.getValue()) ? hangoffviewdeg.getValue() : hdgpos;
 				#help_win.write(sprintf("Blickwinkel: %.2f", hdgpos));
 		  		setprop("/sim/current-view/goal-heading-offset-deg", hdgpos);
 				setprop("/sim/current-view/goal-roll-offset-deg", sceneryposi);
@@ -108,6 +110,11 @@ var forkcontrol = func{
 };
 
 forkcontrol();
+
+# --- Help window for steering damper setting ---
+setlistener("/controls/steering-damper", func (sd){
+	help_win.write(sprintf("Steering damper setting: %.0f clicks", sd.getValue()));
+},1,0);
 
 setlistener("/devices/status/mice/mouse/button", func (state){
     var state = state.getBoolValue();
@@ -149,7 +156,11 @@ setlistener("/controls/flight/aileron", func (position){
 		}else{
 			var np = math.round(position*position*position*100);
 			np = np/100;
-			interpolate("/controls/flight/aileron-manual", np,0.1);
+			#print("NP: ", np);
+			# the *0.0625 is the calculation number for the 16clicks Oehlins steering damper
+			var sensibility = (np == 0 or abs(np) < steeringdamper.getValue()*0.0625) ? steeringdamper.getValue()*0.0625 : abs(np);
+			sensibility = (sensibility < 0.1)? 0.1 : sensibility;
+			interpolate("/controls/flight/aileron-manual", np, sensibility);
 		}
 	}
 });
@@ -250,8 +261,9 @@ setlistener("/controls/engines/engine[0]/throttle", func (position){
 
 setlistener("/gear/gear/rollspeed-ms", func (speed){
 	var speed = speed.getValue();
+	var crnw = getprop("/sim/crashed") or 0;
     # only for manipulate the reset m function 
-	if (speed > 10) setprop("/controls/waiting", 1);
+	if (speed > 20 and !crnw) setprop("/controls/waiting", 1);
 	# speedmeter function
 	if(getprop("/instrumentation/BMW-S-RR/speed-indicator/selection")){
 		if(speed > 0.1){
@@ -387,7 +399,7 @@ setlistener("sim/model/start-idling", func()
 			help_win_red.write("Is everything ok with you?");
 		}else{
 			help_win_red.write("5 SECONDS WAITING FOR REPLACEMENT!");
-			settimer(func{setprop("/controls/waiting", 0)}, 3);
+			settimer(func{setprop("/controls/waiting", 0)}, 2);
 		}
    }
   }, 1, 1);
