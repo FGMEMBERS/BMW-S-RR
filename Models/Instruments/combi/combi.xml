@@ -112,6 +112,8 @@
 		 <object-name>t-s-10.001</object-name>
 		 <object-name>t-m-1.001</object-name>
 		 <object-name>t-m-10.001</object-name>
+		 <object-name>t-m-plus.001</object-name>
+		 <object-name>t-m-minus.001</object-name>
 		 <object-name>t-s-01.002</object-name>
 		 <object-name>t-s-1.002</object-name>
 		 <object-name>t-s-10.002</object-name>
@@ -159,6 +161,8 @@
 		 <object-name>t-s-10.001</object-name>
 		 <object-name>t-m-1.001</object-name>
 		 <object-name>t-m-10.001</object-name>
+		 <object-name>t-m-plus.001</object-name>
+		 <object-name>t-m-minus.001</object-name>
 		 <object-name>t-s-01.002</object-name>
 		 <object-name>t-s-1.002</object-name>
 		 <object-name>t-s-10.002</object-name>
@@ -353,6 +357,8 @@
 		 <object-name>t-s-10.001</object-name>
 		 <object-name>t-m-1.001</object-name>
 		 <object-name>t-m-10.001</object-name>
+		 <object-name>t-m-plus.001</object-name>
+		 <object-name>t-m-minus.001</object-name>
 		 <object-name>t-s-01.002</object-name>
 		 <object-name>t-s-1.002</object-name>
 		 <object-name>t-s-10.002</object-name>
@@ -766,11 +772,86 @@
  	    </axis>
  	</animation>
 		
-	<!-- transponder fastest sector time -->
+	<!-- differenz between fastest sector and actual time -->
+    <animation>
+      <type>select</type>
+		 <object-name>t-m-minus.001</object-name>
+      <condition>  
+			 <greater-than>
+	          	<property>BMW-S-RR/this-lap-time-diff</property>
+			  	<value>0</value>
+	        </greater-than>
+      </condition>
+    </animation>
+	
+    <animation>
+      <type>select</type>
+		 <object-name>t-m-plus.001</object-name>
+      <condition>  
+			 <less-than>
+	          	<property>BMW-S-RR/this-lap-time-diff</property>
+			  	<value>0</value>
+	        </less-than>
+      </condition>
+    </animation>
+	
+ 	 <animation>
+ 	    <type>textranslate</type>
+ 	    <object-name>t-s-01.001</object-name>
+ 	    <property>BMW-S-RR/this-lap-time-diff-s</property>
+ 	    <factor>1</factor>
+ 	    <step>0.1</step>
+ 	    <bias>0.005</bias>
+ 	    <axis>
+ 	        <x>1</x>
+ 	        <y>0</y>
+ 	        <z>0</z>
+ 	    </axis>
+ 	</animation>
+	 <animation>
+	    <type>textranslate</type>
+	    <object-name>t-s-1.001</object-name>
+	    <property>BMW-S-RR/this-lap-time-diff-s</property>
+	    <factor>0.1</factor>
+	    <step>1</step>
+	    <bias>0.005</bias>
+	    <axis>
+	        <x>1</x>
+	        <y>0</y>
+	        <z>0</z>
+	    </axis>
+	</animation>
+	 <animation>
+	    <type>textranslate</type>
+	    <object-name>t-s-10.001</object-name>
+	    <property>BMW-S-RR/this-lap-time-diff-s</property>
+	    <factor>0.01</factor>
+	    <step>10</step>
+	    <bias>0.005</bias>
+	    <axis>
+	        <x>1</x>
+	        <y>0</y>
+	        <z>0</z>
+	    </axis>
+	</animation>
+	 <animation>
+	    <type>textranslate</type>
+	    <object-name>t-m-1.001</object-name>
+	    <property>BMW-S-RR/this-lap-time-diff-m</property>
+	    <factor>0.1</factor>
+	    <step>1</step>
+	    <bias>0.005</bias>
+	    <axis>
+	        <x>1</x>
+	        <y>0</y>
+	        <z>0</z>
+	    </axis>
+	</animation>
+	
   	 <animation>
   	    <type>textranslate</type>
-  	    <object-name>t-s-01.001</object-name>
-  	    <property>BMW-S-RR/fastest-sector-time-sec</property>
+  	    <object-name>t-m-10.001</object-name>
+  	    <property>BMW-S-RR/this-lap-time-diff-m</property>
   	    <factor>1</factor>
   	    <step>0.1</step>
   	    <bias>0.005</bias>
@@ -780,59 +861,7 @@
   	        <z>0</z>
   	    </axis>
   	</animation>
- 	 <animation>
- 	    <type>textranslate</type>
- 	    <object-name>t-s-1.001</object-name>
- 	    <property>BMW-S-RR/fastest-sector-time-sec</property>
- 	    <factor>0.1</factor>
- 	    <step>1</step>
- 	    <bias>0.005</bias>
- 	    <axis>
- 	        <x>1</x>
- 	        <y>0</y>
- 	        <z>0</z>
- 	    </axis>
- 	</animation>
- 	 <animation>
- 	    <type>textranslate</type>
- 	    <object-name>t-s-10.001</object-name>
- 	    <property>BMW-S-RR/fastest-sector-time-sec</property>
- 	    <factor>0.01</factor>
- 	    <step>10</step>
- 	    <bias>0.005</bias>
- 	    <axis>
- 	        <x>1</x>
- 	        <y>0</y>
- 	        <z>0</z>
- 	    </axis>
- 	</animation>
- 	 <animation>
- 	    <type>textranslate</type>
- 	    <object-name>t-m-1.001</object-name>
- 	    <property>BMW-S-RR/fastest-sector-time-min</property>
- 	    <factor>0.1</factor>
- 	    <step>1</step>
- 	    <bias>0.005</bias>
- 	    <axis>
- 	        <x>1</x>
- 	        <y>0</y>
- 	        <z>0</z>
- 	    </axis>
- 	</animation>
- 	 <animation>
- 	    <type>textranslate</type>
- 	    <object-name>t-m-10.001</object-name>
- 	    <property>BMW-S-RR/fastest-sector-time-min</property>
- 	    <factor>0.01</factor>
- 	    <step>10</step>
- 	    <bias>0.005</bias>
- 	    <axis>
- 	        <x>1</x>
- 	        <y>0</y>
- 	        <z>0</z>
- 	    </axis>
- 	</animation>
-	
+ 	 
 	<!-- transponder actual lap time -->
   	 <animation>
   	    <type>textranslate</type>

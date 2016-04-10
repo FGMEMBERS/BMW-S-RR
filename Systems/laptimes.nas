@@ -10,6 +10,9 @@ var thissector = props.globals.getNode("/BMW-S-RR/this-sector");
 var sectortime = props.globals.getNode("/BMW-S-RR/this-sector-time");
 var laptime = props.globals.getNode("/BMW-S-RR/this-lap-time");
 var racetime = props.globals.getNode("/BMW-S-RR/this-race-time");
+var laptimediff = props.globals.initNode("/BMW-S-RR/this-lap-time-diff",0,"DOUBLE");
+var laptimediffmin = props.globals.initNode("/BMW-S-RR/this-lap-time-diff-m",0,"DOUBLE");
+var laptimediffsec = props.globals.initNode("/BMW-S-RR/this-lap-time-diff-s",0,"DOUBLE");
 var inrange = 0;
 
 ################# Geo coordinates from the sector start points ############
@@ -165,6 +168,20 @@ var wp3te = [-27.50475159,-64.91049189,285,"Sector3"];
 # Ground Marker Sector4 - lat,lon,alt in meter
 var wp4te = [-27.50749888,-64.91382656,285,"Sector4"];
 
+##### Circuit of the Americas - Texas 
+
+# Ground Marker Position FINISH - lat,lon,alt in meter
+var wp1ca = [30.13207087,-97.64015017,156,"Sector1"];
+
+# Ground Marker Sector2 - lat,lon,alt in meter
+var wp2ca = [30.13594821,-97.63181035,165,"Sector2"];
+
+# Ground Marker Sector3 - lat,lon,alt in meter
+var wp3ca = [30.13847099,-97.62857221,161,"Sector3"];
+
+# Ground Marker Sector4 - lat,lon,alt in meter
+var wp4ca = [30.13629343,-97.63800251,163,"Sector4"];
+
 var pa = "TT";
 var sectors = sectors_tt = [wp1tt, wp2tt, wp3tt, wp4tt, wp5tt, wp6tt];
 var sectors_s100 = [wp1s, wp2s, wp3s];
@@ -179,6 +196,7 @@ var sectors_ct = [wp1ct, wp2ct, wp3ct];
 var sectors_bo = [wp1bo, wp2bo];
 var sectors_qa = [wp1qa, wp2qa, wp3qa, wp4qa];
 var sectors_te = [wp1te, wp2te, wp3te, wp4te];
+var sectors_ca = [wp1ca, wp2ca, wp3ca, wp4ca];
 
 ############################ helper for view ####################################
 var show_helper = func(s) {
@@ -432,6 +450,9 @@ var find_marker = func{
 	
 	marker_wp_pos.set_latlon(wp1te[0], wp1te[1], wp1te[2], wp1te[3]);
 	var dis_to_TE = marker_wp_pos.distance_to(mypos);
+	
+	marker_wp_pos.set_latlon(wp1ca[0], wp1ca[1], wp1ca[2], wp1ca[3]);
+	var dis_to_CA = marker_wp_pos.distance_to(mypos);
 		
 	if(dis_to_TT < 10000){   # if we are far away - 10km - from the Isle of Man stop script
 		#print("We are on the Isle of Man");
@@ -485,6 +506,10 @@ var find_marker = func{
 		#print("Argentina - Termas de Rio Hondo");
 		sectors = sectors_te;
 		pa = "TE";
+	}else if(dis_to_CA < 10000){
+		#print("Texas - Circuit of the Americas");
+		sectors = sectors_ca;
+		pa = "CA";
 	}
 
 	# newbies have red jackets
@@ -548,6 +573,12 @@ var find_marker = func{
 		var lastsectorendtime = getprop("/BMW-S-RR/"~pa~"/sector["~thissector.getValue()~"]/start-time") or 0;
 		var lasttime = (lastsectorstarttime != 0 and lastsectorendtime !=0 and (lastsectorendtime - lastsectorstarttime) > 0 ) ? lastsectorendtime - lastsectorstarttime : 0;
 		setprop("/BMW-S-RR/"~pa~"/sector["~ln~"]/last-time", lasttime);
+		
+		# show the difference to the fastest sectortime
+		var ldiff = (fastesttime > 0 and thissector.getValue() > 0) ? fastesttime - lasttime : 0;
+		ldiff = (thissector.getValue() == 1) ? ldiff : laptimediff.getValue() + ldiff;
+		
+		# set the fastest time if it is
 		if(lasttime > 0 and lasttime < fastesttime or fastesttime == 0) setprop("/BMW-S-RR/"~pa~"/sector["~ln~"]/fastest-time", lasttime);
 		
 		if(thissector.getValue() == 0){
@@ -560,10 +591,21 @@ var find_marker = func{
 		  }
 		  setprop("/BMW-S-RR/last-lap-time", totallapresult);
 		  var fastestlap = getprop("/BMW-S-RR/"~pa~"/fastest-lap") or 0;
+		  
+		  # if actual time is less than fastest laptime
+		  ldiff = (racelap.getValue() > 0) ? fastestlap - totallapresult : 0;
+		  ######
+		  
 		  if(totallapresult > 0 and totallapresult < fastestlap or fastestlap == 0) setprop("/BMW-S-RR/"~pa~"/fastest-lap", totallapresult);
 		  setprop("/BMW-S-RR/"~pa~"/lap["~racelap.getValue()~"]/actual-time", totallapresult);
 		  racelap.setValue(racelap.getValue() + 1);
 		}
+		
+		# show the difference to the fastest even sectortime odd laptime
+		var resultldiff = calc_time(abs(ldiff));
+		setprop("/BMW-S-RR/this-lap-time-diff-s", resultldiff[0]);
+		setprop("/BMW-S-RR/this-lap-time-diff-m", resultldiff[1]);
+		laptimediff.setValue(ldiff);
 		
 		thissector.setValue(thissector.getValue() + 1);
 	}
