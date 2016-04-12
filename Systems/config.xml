@@ -229,6 +229,38 @@
   	      <halign>right</halign>
   	    </text>
   	  </group>	
+
+  	  <group>
+  	    <layout>hbox</layout>
+  	    <text>
+  	      <label>Texas - Circuit of the Americas (02XS) .......................................</label>
+  	      <halign>left</halign>
+  	    </text>
+  	    <input>
+  	      <property>/BMW-S-RR/CA/race-laps</property>
+  	      <type>INTEGER</type>
+  	    </input>
+  	    <text>
+  	      <label>laps</label>
+  	      <halign>right</halign>
+  	    </text>
+  	  </group>	
+
+  	  <group>
+  	    <layout>hbox</layout>
+  	    <text>
+  	      <label>Espagna - Circuito de Jerez (LEJR) ..............................................</label>
+  	      <halign>left</halign>
+  	    </text>
+  	    <input>
+  	      <property>/BMW-S-RR/JE/race-laps</property>
+  	      <type>INTEGER</type>
+  	    </input>
+  	    <text>
+  	      <label>laps</label>
+  	      <halign>right</halign>
+  	    </text>
+  	  </group>	
 	  	  
   	  <group>
   	    <layout>hbox</layout>
