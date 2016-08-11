@@ -242,6 +242,7 @@ and have fun!</text>
  			<float n="6" alias="/BMW-S-RR/this-lap-time"/> <!-- for mp -->
  			<float n="7" alias="/BMW-S-RR/this-race-time"/> <!-- for mp -->
  			<float n="8" alias="/BMW-S-RR/last-lap-time"/> <!-- for mp -->
+            <float n="9" alias="/position/altitude-agl-ft"/>
 
  			<int n="0" alias="/controls/BMW-S-RR/newbie"/> <!-- animation red security pullover -->
  			<int n="1" alias="/BMW-S-RR/race-lap"/> 	 <!-- mp result views -->

@@ -12,8 +12,8 @@
 	<animation>
 		<type>translate</type>
 		<object-name>shadow</object-name>
-		<property>surface-positions/left-aileron-pos-norm</property>
-		<factor>0.5</factor>
+		<property>/controls/flight/aileron</property>
+		<factor>0.3</factor>
 		<center>
 			<x-m>0</x-m>
 			<y-m>0</y-m>
@@ -26,28 +26,28 @@
 		</axis>
 	</animation>
 	
-	<animation>
-	  <type>scale</type>
-	  <object-name>shadow</object-name>
-	  <property>surface-positions/left-aileron-pos-norm</property>
-	  <x-min>1.0</x-min>
-	  <y-min>1.0</y-min>
-	  <z-min>1.0</z-min>
-	  <x-factor>1.0</x-factor>
-	  <y-factor>1.8</y-factor>
-	  <z-factor>0.0</z-factor>
-	 </animation>
-	 
- 	<animation>
- 	  <type>scale</type>
- 	  <object-name>shadow</object-name>
- 	  <property>surface-positions/right-aileron-pos-norm</property>
- 	  <x-min>1.0</x-min>
- 	  <y-min>1.0</y-min>
- 	  <z-min>1.0</z-min>
- 	  <x-factor>1.0</x-factor>
- 	  <y-factor>1.8</y-factor>
- 	  <z-factor>0.0</z-factor>
- 	 </animation>
+    <animation>
+        <type>rotate</type>
+        <object-name>shadow</object-name>
+        <property>orientation/pitch-deg</property>
+		<offset>-3</offset>
+        <axis>
+            <x>0</x>
+            <y>-1</y>
+            <z>0</z>
+        </axis>
+    </animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>shadow</object-name>
+        <property>sim/multiplay/generic/float[9]</property>
+        <factor>0.3048</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>-1</z>
+        </axis>
+    </animation>
 	
 </PropertyList>
